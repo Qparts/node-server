@@ -1,0 +1,36 @@
+{
+ "form": {
+  "signin": {
+   "resetPassword": [
+    "رقم الجوال غير موجود",
+    "Mobile number is not found"
+   ],
+   "incorrectPassword": [
+    "بريدك الإلكتروني او كلمة المرور ليست صحيحة",
+    "Your email or password is incorrect"
+   ]
+  },
+  "signup": {
+   "mobile": [
+    "تم تسجيل هاتفك المحمول بالفعل",
+    "Your mobile is already have been registered"
+   ],
+   "email": [
+    "تم تسجيل بريدك الإلكتروني بالفعل",
+    "Your email is already have been registered"
+   ]
+  },
+  "changeEmail": {
+   "email": [
+    "هذا البريد استخدم من قبل",
+    "This email is already in use"
+   ]
+  },
+  "changePassword": {
+   "password": [
+    "كلمة المرور القديمة غير متطابقة",
+    "Your old password did not match"
+   ]
+  }
+ }
+}

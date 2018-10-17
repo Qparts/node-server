@@ -1,0 +1,52 @@
+{
+  "customer": {
+    "id": 123,
+    "socialMedia": [],
+    "firstName": "Ahmed",
+    "lastName": "Shaaban",
+    "mobile": "0212116539",
+    "email": "ahmed.vuw@gmail.com",
+    "countryId": 1,
+    "addresses": [{
+        "firstName": "Ahmed",
+        "lastName": "Shaaban",
+        "addressLine1": "3634 Bahran, Qurtubah, Riyadh 13244 6746, Saudi Arabia",
+        "country": "Saudi Arabia",
+        "city": "Dammam",
+        "region": "EP",
+        "zipCode": "1111"
+      },
+      {
+        "firstName": "Ahmed",
+        "lastName": "Shaaban",
+        "addressLine1": "3634 Bahran, Qurtubah, Riyadh 13244 6746, Saudi Arabia",
+        "country": "Saudi Arabia",
+        "city": "Dammam",
+        "region": "EP",
+        "zipCode": "1111"
+      }
+    ],
+    "vehicles": [{
+      "id": 3,
+      "vehicleId": 502,
+      "customerId": 1,
+      "vin": "JM71234W678901M30",
+      "vehicle": {
+        "id": 502,
+        "model": {
+          "id": 43,
+          "name": "Tucson",
+          "nameAr": "توسان"
+        },
+        "make": {
+          "id": 4,
+          "name": "Hyundai",
+          "nameAr": "هيونداي"
+        },
+        "year": 2017
+      }
+    }],
+    "defaultLang": "en"
+  },
+  "token": "12345"
+}

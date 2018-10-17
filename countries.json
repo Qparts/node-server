@@ -1,0 +1,71 @@
+[{
+    "id": 1,
+    "name": "Saudi Arabia",
+    "nameAr": "السعودية",
+    "latitude": 23.9939435084951,
+    "longitude": 45.046721125,
+    "mapZoom": 5,
+    "countryCode": "+966",
+    "mobileRegex": "^([05]\\d)(5|0|3|6|4|9|1|8|7)([0-9]{7})$",
+    "regions": [{
+        "regionId": 1,
+        "name": "Eastern Province",
+        "nameAr": "الشرقيه",
+        "latitude": 23.1827992465391,
+        "longitude": 46.8100267890625,
+        "mapZoom": 6,
+        "cities": [{
+            "id": 1,
+            "name": "Dammam",
+            "nameAr": "الدمام"
+          },
+          {
+            "id": 2,
+            "name": "Khobar",
+            "nameAr": "الخبر"
+          },
+          {
+            "id": 3,
+            "name": "Jubail",
+            "nameAr": "الجبيل"
+          }
+        ]
+      },
+      {
+        "regionId": 2,
+        "name": "Riyadh",
+        "nameAr": "الرياض",
+        "latitude": 23.1827992465391,
+        "longitude": 46.8100267890625,
+        "mapZoom": 6,
+        "cities": [{
+            "id": 1,
+            "name": "Kharj",
+            "nameAr": "الخرج"
+          },
+          {
+            "id": 2,
+            "name": "Riyadh",
+            "nameAr": "الرياض"
+          },
+          {
+            "id": 3,
+            "name": "Duwadimi",
+            "nameAr": "الدوادمي"
+          }
+
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Egypt",
+    "nameAr": "مصر",
+    "latitude": 26.8206,
+    "longitude": 30.8025,
+    "mapZoom": 5,
+    "countryCode": "+20",
+    "mobileRegex": "^([05]\\d)(5|0|3|6|4|9|1|8|7)([0-9]{7})$"
+  }
+]

@@ -1,0 +1,64 @@
+[{
+ "id": 1,
+ "name": "Saudi Arabia",
+ "latitude": 23.9939435084951,
+ "longitude": 45.046721125,
+ "mapZoom": 5,
+ "countryCode": "966",
+ "mobileRegex": "^([05]\\d)(5|0|3|6|4|9|1|8|7)([0-9]{7})$",
+ "regions": null
+}, {
+ "id": 2,
+ "name": "Egypt",
+ "latitude": 26.5910322833191,
+ "longitude": 30.281096125,
+ "mapZoom": 5,
+ "countryCode": "20",
+ "mobileRegex": "^01[0-2]{1}[0-9]{8}$",
+ "regions": null
+}, {
+ "id": 3,
+ "name": "Bahrain",
+ "latitude": 26.0761807867796,
+ "longitude": 50.5920702460937,
+ "mapZoom": 10,
+ "countryCode": "973",
+ "mobileRegex": "^(06|03)[0-9]{7}$",
+ "regions": null
+}, {
+ "id": 4,
+ "name": "Kuwait",
+ "latitude": 29.3273285047637,
+ "longitude": 47.694426203125,
+ "mapZoom": 8,
+ "countryCode": "965",
+ "mobileRegex": "^(09|06)[0-9]{7}$",
+ "regions": null
+}, {
+ "id": 5,
+ "name": "UAE",
+ "latitude": 24.4886700193315,
+ "longitude": 54.20931878125,
+ "mapZoom": 7,
+ "countryCode": "971",
+ "mobileRegex": "^([05]\\d)(5|0|3|6|4|9|1|8|7)([0-9]{7})$",
+ "regions": null
+}, {
+ "id": 7,
+ "name": "Sudan",
+ "latitude": 15.6564431988361,
+ "longitude": 31.4676195625,
+ "mapZoom": 5,
+ "countryCode": "249",
+ "mobileRegex": "^09\\d{8}$",
+ "regions": null
+}, {
+ "id": 8,
+ "name": "Jordan",
+ "latitude": 31.1451940594173,
+ "longitude": 37.24642815625,
+ "mapZoom": 6,
+ "countryCode": "962",
+ "mobileRegex": "^((079)|(078)|(077)){1}[0-9]{7}$",
+ "regions": null
+}]

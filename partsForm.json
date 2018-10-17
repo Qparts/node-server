@@ -1,0 +1,25 @@
+[{
+  "id": 5,
+  "partNumber": "11251-06206B",
+  "makeId": 5,
+  "description": "some description",
+  "price": 150.00,
+  "priceId": 1
+ },
+ {
+   "id": 7,
+   "partNumber": "11251-11111",
+   "makeId": 5,
+   "description": "some description",
+   "price": null,
+   "priceId": 2
+ },
+ {
+  "id": 6,
+  "partNumber": "25331-1W041",
+  "makeId": 14,
+  "description": "some description",
+  "price": null,
+  "priceId": 2
+ }
+]
