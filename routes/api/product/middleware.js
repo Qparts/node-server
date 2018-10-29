@@ -1,4 +1,4 @@
-const { GET_PRODUCTS_BEST_SELLERS ,GET_PRODUCTS_OFFERS } = require('../../constants');
+const { GET_PRODUCTS_BEST_SELLERS, GET_PRODUCTS_OFFERS, GET_PRODUCT } = require('../../constants');
 const { apiGetRequest, apiPostRequest, apiPutRequest } = require('../apiRequest');
 
 const bestSellers = (req, res) => {
@@ -23,7 +23,21 @@ const offers = (req, res) => {
 		});
 }
 
+const getProduct = (req, res) => {
+	const { productId } = req.params;
+	
+	apiGetRequest(`${GET_PRODUCT}/${productId}`)
+		.then(data => {
+			if (data.statusCode !== 200) {
+				res.sendStatus(500);
+			} else {
+				res.send(data.body);
+			}
+		})
+}
+
 module.exports = {
 	bestSellers,
-	offers
+	offers,
+	getProduct
 }
