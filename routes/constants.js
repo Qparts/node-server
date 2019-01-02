@@ -9,11 +9,12 @@ const PRODUCT_SERVICE = 'service-qetaa-product';
 const API_V1 = '/rest/api/v1';
 const API_V2 = '/rest/api/v2';
 
+const LOGIN = 'login';
 const SIGNUP = 'signup';
 const ACCOUNT_VERIFY = 'account-verify';
 
 
-const EMAIL_LOGIN_URL = `${CUSTOMER_SERVICE}${API_V2}/login/email`;
+const LOGIN_URL = `${CUSTOMER_SERVICE}${API_V2}/${LOGIN}`;
 const SIGNUP_URL = `${CUSTOMER_SERVICE}${API_V2}/${SIGNUP}`;
 const ACCOUNT_VERIFY_URL = `${CUSTOMER_SERVICE}${API_V2}/${ACCOUNT_VERIFY}`;
 const ADD_ADDRESS_URL = `${CUSTOMER_SERVICE}${API_V2}/address`;
@@ -39,7 +40,7 @@ const GET_PRODUCT = `${PRODUCT_SERVICE}${API_V1}/product`;
 
 module.exports = {
  BASE_URL,
- EMAIL_LOGIN_URL,
+ LOGIN_URL,
  SIGNUP_URL,
  ACCOUNT_VERIFY_URL,
  EMAIL_REGISTER_URL,
@@ -63,6 +64,7 @@ module.exports = {
  GET_PRODUCTS_OFFERS,
  GET_PRODUCT,
 
+ LOGIN,
  SIGNUP,
  ACCOUNT_VERIFY
 }

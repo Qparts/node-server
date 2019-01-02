@@ -3,7 +3,7 @@ const { apiGetRequest, apiPostRequest, apiPutRequest } = require('../../apiReque
 const _ = require('lodash');
 
 const {
-  SIGNUP_URL, ACCOUNT_VERIFY_URL, EMAIL_REGISTER_URL, EMAIL_LOGIN_URL, SOCIAL_MEDIA_LOGIN_URL, RESET_PASSWORD_URL, RESET_SMS_URL, SOCIAL_MEDIA_LINK_URL,
+  SIGNUP_URL, ACCOUNT_VERIFY_URL, EMAIL_REGISTER_URL, LOGIN_URL, SOCIAL_MEDIA_LOGIN_URL, RESET_PASSWORD_URL, RESET_SMS_URL, SOCIAL_MEDIA_LINK_URL,
   ADD_ADDRESS_URL, ADD_VEHICLE_URL, CHANGE_EMAIL_URL, CHANGE_PASSWORD_URL, CHANGE_NAME_URL
 } = require('../../../constants')
 
@@ -60,18 +60,16 @@ const resetPasswordSms = (req, res) => {
     });
 }
 
-const emailLogin = (req, res) => {
-  apiPostRequest(EMAIL_LOGIN_URL, req.body)
+const login = (req, res) => {
+  apiPostRequest(LOGIN_URL, req.body)
     .then(data => {
-      if (data.statusCode !== 200) {
-        res.status(data.statusCode).send(errorMessages.form.signin.incorrectPassword);
-      } else {
+      if (data.statusCode === 200) {
         saveCurrentCustomer(req, data.body)
         res.send(data.body);
+      } else {
+        res.status(data.statusCode).send(errorMessages.form.signin.incorrectPassword);
       }
-    })
-  // saveCurrentCustomer(req, require('../../../user.json'))
-  // res.send(require('../../../user.json'));
+    });
 }
 
 const socialMediaLogin = (req, res) => {
@@ -90,9 +88,9 @@ const signup = (req, res) => {
   apiPostRequest(SIGNUP_URL, req.body.customer)
     .then(data => {
       const result = data.body;
-      if (data.statusCode === 409 ) {
+      if (data.statusCode === 409) {
         res.status(data.statusCode).send({ error: errorMessages.form.signup.email, field: result });
-      }  else if (data.statusCode === 202) {
+      } else if (data.statusCode === 202) {
         const json = JSON.parse(data.body);
         res.status(data.statusCode).send(json);
       } else {
@@ -268,7 +266,7 @@ module.exports = {
   editEmail,
   resetPassword,
   resetPasswordSms,
-  emailLogin,
+  login,
   socialMediaLogin,
   signup,
   accountVerification,
