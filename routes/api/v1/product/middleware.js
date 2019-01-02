@@ -1,5 +1,5 @@
-const { GET_PRODUCTS_BEST_SELLERS, GET_PRODUCTS_OFFERS, GET_PRODUCT } = require('../../constants');
-const { apiGetRequest, apiPostRequest, apiPutRequest } = require('../apiRequest');
+const { GET_PRODUCTS_BEST_SELLERS, GET_PRODUCTS_OFFERS, GET_PRODUCT } = require('../../../constants');
+const { apiGetRequest, apiPostRequest, apiPutRequest } = require('../../apiRequest');
 
 const bestSellers = (req, res) => {
 	apiGetRequest(GET_PRODUCTS_BEST_SELLERS, req.session.customer)

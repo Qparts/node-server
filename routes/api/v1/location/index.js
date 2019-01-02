@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { apiGetRequest } = require('../apiRequest');
+const { apiGetRequest } = require('../../apiRequest');
 const {
   getCountry, getCountries, getCountriesRegions, findCity, getRegions
 } = require('./methods');

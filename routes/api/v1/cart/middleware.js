@@ -1,5 +1,5 @@
-const { GET_QUOTATION_CART_URL, ADD_QUOTATION_CART_URL } = require('../../constants');
-const { apiGetRequest, apiPostRequest, apiPutRequest } = require('../apiRequest');
+const { GET_QUOTATION_CART_URL, ADD_QUOTATION_CART_URL } = require('../../../constants');
+const { apiGetRequest, apiPostRequest, apiPutRequest } = require('../../apiRequest');
 
 const getQuotation = (req, res) => {
 	const { customerId } = req.params;

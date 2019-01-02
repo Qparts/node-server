@@ -1,4 +1,4 @@
-const data = require('../../../partsForm.json');
+const data = require.main.require('./partsForm.json');
 
 const getData = (req, res) => {
  const { product, makeId } = req.params;

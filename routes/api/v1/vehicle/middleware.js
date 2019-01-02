@@ -1,5 +1,5 @@
-const { GET_MAKES_URL } = require('../../constants');
-const { apiGetRequest, apiPostRequest, apiPutRequest } = require('../apiRequest');
+const { GET_MAKES_URL } = require('../../../constants');
+const { apiGetRequest, apiPostRequest, apiPutRequest } = require('../../apiRequest');
 
 const getMakes = (req, res) => {
  apiGetRequest(GET_MAKES_URL)
