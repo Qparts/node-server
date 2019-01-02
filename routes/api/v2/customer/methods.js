@@ -1,19 +1,13 @@
-const data = require('../../../user.json');
-const regionsData = require('../../../regions.json');
-const errorMessages = require('../../../errorMessages.json');
-const { apiGetRequest, apiPostRequest, apiPutRequest } = require('../apiRequest');
+const errorMessages = require.main.require('./errorMessages.json');
+const { apiGetRequest, apiPostRequest, apiPutRequest } = require('../../apiRequest');
 const _ = require('lodash');
 
 const {
-  SIGNUP_URL, EMAIL_REGISTER_URL, EMAIL_LOGIN_URL, SOCIAL_MEDIA_LOGIN_URL, RESET_PASSWORD_URL, RESET_SMS_URL, SOCIAL_MEDIA_LINK_URL,
+  SIGNUP_URL, ACCOUNT_VERIFY_URL, EMAIL_REGISTER_URL, EMAIL_LOGIN_URL, SOCIAL_MEDIA_LOGIN_URL, RESET_PASSWORD_URL, RESET_SMS_URL, SOCIAL_MEDIA_LINK_URL,
   ADD_ADDRESS_URL, ADD_VEHICLE_URL, CHANGE_EMAIL_URL, CHANGE_PASSWORD_URL, CHANGE_NAME_URL
-} = require('../../constants')
+} = require('../../../constants')
 
-const { invalidToken } = require('../constants');
-
-const getCurrentUser = (req, res) => {
-  res.send(data);
-}
+const { invalidToken } = require('../../constants');
 
 const editName = (req, res) => {
   const { firstName, lastName, defaultLang } = req.body;
@@ -66,15 +60,6 @@ const resetPasswordSms = (req, res) => {
     });
 }
 
-const getRegions = (req, res) => {
-  const { countryId } = req.params;
-  const regions = regionsData.filter(region => {
-    return region.countryId == countryId;
-  });
-
-  res.send(regions);
-}
-
 const emailLogin = (req, res) => {
   apiPostRequest(EMAIL_LOGIN_URL, req.body)
     .then(data => {
@@ -102,32 +87,29 @@ const socialMediaLogin = (req, res) => {
 }
 
 const signup = (req, res) => {
-  const {
-    firstName, lastName, mobile, email, countryId, countryCode, password, platform, socialMediaId
-  } = req.body.customer;
-  req.session.customer = req.body.customer;
-  apiPostRequest(SIGNUP_URL, { countryCode, mobile, email })
+  apiPostRequest(SIGNUP_URL, req.body.customer)
     .then(data => {
       const result = data.body;
-      if (data.statusCode === 409 && result === 'mobile') {
-        res.status(data.statusCode).send({ error: errorMessages.form.signup.mobile, field: result });
-      } else if (data.statusCode === 409 && result === 'email') {
+      if (data.statusCode === 409 ) {
         res.status(data.statusCode).send({ error: errorMessages.form.signup.email, field: result });
-      } else if (data.statusCode === 200) {
+      }  else if (data.statusCode === 202) {
         const json = JSON.parse(data.body);
-        req.session.code = json.code.toString();
         res.status(data.statusCode).send(json);
       } else {
         res.status(500);
       }
     });
-  // req.session.customer = req.body;
-  // req.session.code = require('../../../signup.json').code;
-  // console.log('====================================');
-  // console.log({ countryCode, mobile, email });
-  // console.log(req.session);
-  // console.log('====================================');
-  // res.status(200).send(req.session.code);
+}
+
+const accountVerification = (req, res) => {
+  apiPostRequest(ACCOUNT_VERIFY_URL, req.body)
+    .then(data => {
+      if (data.statusCode === 200) {
+        res.send(data.body);
+      } else {
+        res.sendStatus(data.statusCode);
+      }
+    });
 }
 
 const registerEmail = (req, res) => {
@@ -139,15 +121,6 @@ const registerEmail = (req, res) => {
         res.sendStatus(data.statusCode);
       }
     });
-  // console.log('====================================');
-  // console.log(req.session);
-  // console.log('====================================');
-  // const data = require('../../../register.json');
-  // if (req.session.code !== req.body.code) res.status(403).send("The code you entered is not correct. Please try again");
-
-  // else {
-  // res.send({ firstName, lastName, mobile, email, countryId, countryCode, password } = req.session.customer);
-  // }
 }
 
 const registerSocialMedia = (req, res) => {
@@ -290,16 +263,15 @@ const checkCustomerSession = (req, res, next) => {
 }
 
 module.exports = {
-  getCurrentUser,
   editName,
   editPhone,
   editEmail,
   resetPassword,
   resetPasswordSms,
-  getRegions,
   emailLogin,
   socialMediaLogin,
   signup,
+  accountVerification,
   registerEmail,
   registerSocialMedia,
   matchCode,
