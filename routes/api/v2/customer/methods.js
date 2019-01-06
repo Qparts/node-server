@@ -87,12 +87,11 @@ const socialMediaLogin = (req, res) => {
 const signup = (req, res) => {
   apiPostRequest(SIGNUP_URL, req.body.customer)
     .then(data => {
-      const result = data.body;
       if (data.statusCode === 409) {
-        res.status(data.statusCode).send({ error: errorMessages.form.signup.email, field: result });
+        res.status(data.statusCode).send({ error: errorMessages.form.signup.email, field: 'email' });
       } else if (data.statusCode === 202) {
-        const json = JSON.parse(data.body);
-        res.status(data.statusCode).send(json);
+        saveCurrentCustomer(req, data.body)
+        res.send(data.body);
       } else {
         res.status(500);
       }
