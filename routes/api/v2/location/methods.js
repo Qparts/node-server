@@ -1,7 +1,7 @@
 const countriesData = require.main.require('./countries.json');
 
 const { apiGetRequest, apiPostRequest } = require('../../apiRequest');
-const { COUNTRIES_URL, FIND_CITY_URL, REGIONS_URL } = require('../../../constants')
+const { COUNTRIES_URL, FIND_CITY_URL, REGIONS_URL, COUNTRIES_ONLY_URL } = require('../../../constants')
 
 const getCountry = (req, res) => {
   const { countryId } = req.params;
@@ -15,6 +15,13 @@ const getCountry = (req, res) => {
 
 const getCountries = (req, res) => {
   apiGetRequest(COUNTRIES_URL)
+    .then(data => {
+      res.send(data.body);
+    });
+}
+
+const getCountriesOnly = (req, res) => {
+  apiGetRequest(COUNTRIES_ONLY_URL)
     .then(data => {
       res.send(data.body);
     });
@@ -48,5 +55,6 @@ module.exports = {
   getCountries,
   getCountriesRegions,
   findCity,
-  getRegions
+  getRegions,
+  getCountriesOnly
 }

@@ -1,11 +1,11 @@
 const router = require('express').Router();
 const { 
  editName, editPhone, editEmail, resetPassword, login, signup, accountVerification, registerEmail, 
- registerSocialMedia, socialMediaLogin, resetPasswordSms, matchCode, addSocialMediaLink, addAddress, addVehicle, changeEmailSendLink, changeEmailVerification,
+ registerSocialMedia, socialMediaAuth, resetPasswordSms, matchCode, addSocialMediaLink, addAddress, addVehicle, changeEmailSendLink, changeEmailVerification,
  changePassword, checkCustomerSession, logout
  } = require('./methods');
  
- const {LOGIN, SIGNUP, ACCOUNT_VERIFY } = require('../../../constants');
+ const {LOGIN, SIGNUP, ACCOUNT_VERIFY, SOCIAL_MEDIA_AUTH } = require('../../../constants');
 
 router.put('/', editName);
 router.post('/address', addAddress)
@@ -15,7 +15,7 @@ router.post('/edit/email', editEmail);
 router.put('/reset-password', matchCode, resetPassword);
 router.post('/reset-sms/mobile', resetPasswordSms);
 router.post(`/${LOGIN}`, login);
-router.post('/login/social-media', socialMediaLogin);
+router.post(`/${SOCIAL_MEDIA_AUTH}`, socialMediaAuth);
 router.post('/social-media', addSocialMediaLink);
 router.post(`/${SIGNUP}`, signup);
 router.post(`/${ACCOUNT_VERIFY}`, accountVerification);

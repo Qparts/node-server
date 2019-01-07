@@ -12,6 +12,8 @@ const API_V2 = '/rest/api/v2';
 const LOGIN = 'login';
 const SIGNUP = 'signup';
 const ACCOUNT_VERIFY = 'account-verify';
+const SOCIAL_MEDIA_AUTH = 'social-media-auth';
+const COUNTRIES_ONLY = 'countries-only';
 
 
 const LOGIN_URL = `${CUSTOMER_SERVICE}${API_V2}/${LOGIN}`;
@@ -19,7 +21,7 @@ const SIGNUP_URL = `${CUSTOMER_SERVICE}${API_V2}/${SIGNUP}`;
 const ACCOUNT_VERIFY_URL = `${CUSTOMER_SERVICE}${API_V2}/${ACCOUNT_VERIFY}`;
 const ADD_ADDRESS_URL = `${CUSTOMER_SERVICE}${API_V2}/address`;
 const ADD_VEHICLE_URL = `${CUSTOMER_SERVICE}${API_V2}/vehicle`;
-const SOCIAL_MEDIA_LOGIN_URL = `${CUSTOMER_SERVICE}${API_V2}/login/social-media`;
+const SOCIAL_MEDIA_AUTH_URL = `${CUSTOMER_SERVICE}${API_V2}/${SOCIAL_MEDIA_AUTH}`;
 const SOCIAL_MEDIA_LINK_URL = `${CUSTOMER_SERVICE}${API_V2}/social-media`;
 const EMAIL_REGISTER_URL = `${CUSTOMER_SERVICE}${API_V2}/register/email`;
 const SOCIAL_MEDIA_REGISTER_URL = `${CUSTOMER_SERVICE}${API_V2}/register/social-media`;
@@ -30,6 +32,7 @@ const CHANGE_EMAIL_URL = `${CUSTOMER_SERVICE}${API_V2}/change-email`;
 const CHANGE_PASSWORD_URL = `${CUSTOMER_SERVICE}${API_V2}/password`;
 const FIND_CITY_URL = `${LOCATION_SERVICE}${API_V2}/find-city`;
 const COUNTRIES_URL = `${LOCATION_SERVICE}${API_V2}/countries`;
+const COUNTRIES_ONLY_URL = `${LOCATION_SERVICE}${API_V2}/${COUNTRIES_ONLY}`;
 const REGIONS_URL = `${LOCATION_SERVICE}${API_V2}/regions/country-id`;
 const GET_MAKES_URL = `${VEHICLE_SERVICE}${API_V1}/makes`;
 const GET_QUOTATION_CART_URL = `${CART_SERVICE}${API_V1}/quotation-carts/customer`;
@@ -48,7 +51,8 @@ module.exports = {
  COUNTRIES_URL,
  REGIONS_URL,
  FIND_CITY_URL,
- SOCIAL_MEDIA_LOGIN_URL,
+ SOCIAL_MEDIA_AUTH_URL,
+ COUNTRIES_ONLY_URL,
  RESET_PASSWORD_URL,
  RESET_SMS_URL,
  SOCIAL_MEDIA_LINK_URL,
@@ -66,5 +70,7 @@ module.exports = {
 
  LOGIN,
  SIGNUP,
- ACCOUNT_VERIFY
+ ACCOUNT_VERIFY,
+ SOCIAL_MEDIA_AUTH,
+ COUNTRIES_ONLY
 }
