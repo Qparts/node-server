@@ -1,7 +1,7 @@
 const BASE_URL = 'http://qtest.fareed9.com:8081';
 
 const CUSTOMER_SERVICE = 'service-q-customer';
-const LOCATION_SERVICE = 'service-qetaa-location';
+const LOCATION_SERVICE = 'service-q-location';
 const VEHICLE_SERVICE = 'service-qetaa-vehicle';
 const CART_SERVICE = 'service-qetaa-cart';
 const PRODUCT_SERVICE = 'service-qetaa-product';
@@ -28,9 +28,9 @@ const RESET_SMS_URL = `${CUSTOMER_SERVICE}${API_V2}/reset-sms/mobile`;
 const CHANGE_NAME_URL = `${CUSTOMER_SERVICE}${API_V2}/customer`;
 const CHANGE_EMAIL_URL = `${CUSTOMER_SERVICE}${API_V2}/change-email`;
 const CHANGE_PASSWORD_URL = `${CUSTOMER_SERVICE}${API_V2}/password`;
-const FIND_CITY_URL = `${LOCATION_SERVICE}${API_V1}/find-city`;
-const COUNTRIES_URL = `${LOCATION_SERVICE}${API_V1}/countries`;
-const REGIONS_URL = `${LOCATION_SERVICE}${API_V1}/regions/country-id`;
+const FIND_CITY_URL = `${LOCATION_SERVICE}${API_V2}/find-city`;
+const COUNTRIES_URL = `${LOCATION_SERVICE}${API_V2}/countries`;
+const REGIONS_URL = `${LOCATION_SERVICE}${API_V2}/regions/country-id`;
 const GET_MAKES_URL = `${VEHICLE_SERVICE}${API_V1}/makes`;
 const GET_QUOTATION_CART_URL = `${CART_SERVICE}${API_V1}/quotation-carts/customer`;
 const ADD_QUOTATION_CART_URL = `${CART_SERVICE}${API_V1}/quotation-cart`;
