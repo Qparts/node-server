@@ -36,13 +36,39 @@ const editEmail = (req, res) => {
 
 }
 const resetPassword = (req, res) => {
-  const { mobile, password } = req.body;
-  apiPutRequest(RESET_PASSWORD_URL, { mobile, password })
+  apiPostRequest(RESET_PASSWORD_URL, req.body)
     .then(data => {
       if (data.statusCode !== 200) {
         res.sendStatus(data.statusCode);
       } else {
-        res.sendStatus(data.statusCode).send(data.body);
+        res.sendStatus(data.statusCode);
+      }
+    });
+}
+
+const resetPasswordToken = (req, res) => {
+  const { tokenId } = req.params;
+
+  apiGetRequest(`${RESET_PASSWORD_URL}/token/${tokenId}`, req.body)
+    .then(data => {
+      if (data.statusCode !== 201) {
+        res.sendStatus(data.statusCode);
+      } else {
+        res.sendStatus(data.statusCode);
+      }
+    });
+}
+
+const updatePassword = (req, res) => {
+  const { password, query: { token } } = req.body;
+  
+  apiPutRequest(RESET_PASSWORD_URL, { password, token })
+    .then(data => {
+      if (data.statusCode !== 200) {
+        res.sendStatus(data.statusCode);
+      } else {
+        saveCurrentCustomer(req, data.body)
+        res.send(data.body);
       }
     });
 }
@@ -264,6 +290,8 @@ module.exports = {
   editPhone,
   editEmail,
   resetPassword,
+  updatePassword,
+  resetPasswordToken,
   resetPasswordSms,
   login,
   socialMediaAuth,

@@ -14,6 +14,7 @@ const SIGNUP = 'signup';
 const ACCOUNT_VERIFY = 'account-verify';
 const SOCIAL_MEDIA_AUTH = 'social-media-auth';
 const COUNTRIES_ONLY = 'countries-only';
+const RESET_PASSWORD = 'reset-password';
 
 
 const LOGIN_URL = `${CUSTOMER_SERVICE}${API_V2}/${LOGIN}`;
@@ -25,7 +26,7 @@ const SOCIAL_MEDIA_AUTH_URL = `${CUSTOMER_SERVICE}${API_V2}/${SOCIAL_MEDIA_AUTH}
 const SOCIAL_MEDIA_LINK_URL = `${CUSTOMER_SERVICE}${API_V2}/social-media`;
 const EMAIL_REGISTER_URL = `${CUSTOMER_SERVICE}${API_V2}/register/email`;
 const SOCIAL_MEDIA_REGISTER_URL = `${CUSTOMER_SERVICE}${API_V2}/register/social-media`;
-const RESET_PASSWORD_URL = `${CUSTOMER_SERVICE}${API_V2}/reset-password`;
+const RESET_PASSWORD_URL = `${CUSTOMER_SERVICE}${API_V2}/${RESET_PASSWORD}`;
 const RESET_SMS_URL = `${CUSTOMER_SERVICE}${API_V2}/reset-sms/mobile`;
 const CHANGE_NAME_URL = `${CUSTOMER_SERVICE}${API_V2}/customer`;
 const CHANGE_EMAIL_URL = `${CUSTOMER_SERVICE}${API_V2}/change-email`;
@@ -72,5 +73,6 @@ module.exports = {
  SIGNUP,
  ACCOUNT_VERIFY,
  SOCIAL_MEDIA_AUTH,
- COUNTRIES_ONLY
+ COUNTRIES_ONLY,
+ RESET_PASSWORD
 }
