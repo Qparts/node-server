@@ -52,7 +52,7 @@ const resetPasswordToken = (req, res) => {
   apiGetRequest(`${RESET_PASSWORD_URL}/token/${tokenId}`, req.body)
     .then(data => {
       if (data.statusCode !== 201) {
-        res.sendStatus(data.statusCode);
+        res.sendStatus(500);
       } else {
         res.sendStatus(data.statusCode);
       }
@@ -65,7 +65,7 @@ const updatePassword = (req, res) => {
   apiPutRequest(RESET_PASSWORD_URL, { password, token })
     .then(data => {
       if (data.statusCode !== 200) {
-        res.sendStatus(data.statusCode);
+        res.sendStatus(500);
       } else {
         saveCurrentCustomer(req, data.body)
         res.send(data.body);
