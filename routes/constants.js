@@ -15,13 +15,14 @@ const ACCOUNT_VERIFY = 'account-verify';
 const SOCIAL_MEDIA_AUTH = 'social-media-auth';
 const COUNTRIES_ONLY = 'countries-only';
 const RESET_PASSWORD = 'reset-password';
+const VEHICLE = 'vehicle';
 
 
 const LOGIN_URL = `${CUSTOMER_SERVICE}${API_V2}/${LOGIN}`;
 const SIGNUP_URL = `${CUSTOMER_SERVICE}${API_V2}/${SIGNUP}`;
 const ACCOUNT_VERIFY_URL = `${CUSTOMER_SERVICE}${API_V2}/${ACCOUNT_VERIFY}`;
 const ADD_ADDRESS_URL = `${CUSTOMER_SERVICE}${API_V2}/address`;
-const ADD_VEHICLE_URL = `${CUSTOMER_SERVICE}${API_V2}/vehicle`;
+const ADD_VEHICLE_URL = `${CUSTOMER_SERVICE}${API_V2}/${VEHICLE}`;
 const SOCIAL_MEDIA_AUTH_URL = `${CUSTOMER_SERVICE}${API_V2}/${SOCIAL_MEDIA_AUTH}`;
 const SOCIAL_MEDIA_LINK_URL = `${CUSTOMER_SERVICE}${API_V2}/social-media`;
 const EMAIL_REGISTER_URL = `${CUSTOMER_SERVICE}${API_V2}/register/email`;
@@ -74,5 +75,6 @@ module.exports = {
  ACCOUNT_VERIFY,
  SOCIAL_MEDIA_AUTH,
  COUNTRIES_ONLY,
- RESET_PASSWORD
+ RESET_PASSWORD,
+ VEHICLE
 }

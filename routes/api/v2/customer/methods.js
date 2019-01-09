@@ -198,8 +198,9 @@ const addAddress = (req, res) => {
 
 const addVehicle = (req, res) => {
   const customerId = getCustomerId(req);
-  const { vehicleId, vin } = req.body;
-  apiPostRequest(ADD_VEHICLE_URL, { customerId, vehicleId, vin }, req.session.customer)
+  const { vehicleYearId, vin } = req.body;
+  
+  apiPostRequest(ADD_VEHICLE_URL, { customerId, vehicleYearId, vin }, req.session.customer)
     .then(data => {
       if (data.statusCode !== 200) {
         res.sendStatus(500);

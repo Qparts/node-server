@@ -1,15 +1,17 @@
 const router = require('express').Router();
-const { 
- editName, editPhone, editEmail, resetPassword, updatePassword, login, signup, accountVerification, registerEmail, 
- registerSocialMedia, socialMediaAuth, resetPasswordSms, matchCode, addSocialMediaLink, addAddress, addVehicle, changeEmailSendLink, changeEmailVerification,
- changePassword, checkCustomerSession, logout, resetPasswordToken
- } = require('./methods');
- 
- const {LOGIN, SIGNUP, ACCOUNT_VERIFY, SOCIAL_MEDIA_AUTH, RESET_PASSWORD } = require('../../../constants');
+const {
+    editName, editPhone, editEmail, resetPassword, updatePassword, login, signup, accountVerification, registerEmail,
+    registerSocialMedia, socialMediaAuth, resetPasswordSms, matchCode, addSocialMediaLink, addAddress, addVehicle, changeEmailSendLink, changeEmailVerification,
+    changePassword, checkCustomerSession, logout, resetPasswordToken
+} = require('./methods');
+
+const {
+    LOGIN, SIGNUP, ACCOUNT_VERIFY, SOCIAL_MEDIA_AUTH, RESET_PASSWORD, VEHICLE
+} = require('../../../constants');
 
 router.put('/', editName);
 router.post('/address', addAddress)
-router.post('/vehicle', addVehicle)
+router.post(`/${VEHICLE}`, addVehicle)
 router.post('/edit/phone', editPhone);
 router.post('/edit/email', editEmail);
 router.post(`/${RESET_PASSWORD}`, resetPassword);
