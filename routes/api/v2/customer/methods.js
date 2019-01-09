@@ -102,7 +102,7 @@ const socialMediaAuth = (req, res) => {
   apiPostRequest(SOCIAL_MEDIA_AUTH_URL, req.body)
     .then(data => {
       if (data.statusCode !== 200) {
-        res.send(data.statusCode);
+        res.sendStatus(data.statusCode);
       } else {
         saveCurrentCustomer(req, data.body);
         res.send(data.body);
@@ -146,32 +146,16 @@ const registerEmail = (req, res) => {
     });
 }
 
-const registerSocialMedia = (req, res) => {
-  apiPostRequest(SOCIAL_MEDIA_REGISTER_URL, {
-    firstName, lastName, mobile, email, countryId, countryCode, socialMediaId, platform
-  } = req.session.customer)
-    .then(data => {
-      if (data.statusCode === 200) {
-        res.send(data.body);
-      } else {
-        res.sendStatus(data.statusCode);
-      }
-    });
-  // const data = require('../../../registerSM.json');
-  // const customer_id = "10155279156246862"
-  // if (customer_id === req.body.customer.id) res.status(409).send("This user is already registered");
-  // else {
-  //   res.send(data);
-  // }
-}
-
 const addSocialMediaLink = (req, res) => {
   const customerId = getCustomerId(req);
-  const { platform, socialMediaId } = req.body;
-  apiPostRequest(SOCIAL_MEDIA_LINK_URL, { platform, socialMediaId, customerId }, req.session.customer)
+  const { platform, socialMediaId, email } = req.body;
+
+  apiPostRequest(SOCIAL_MEDIA_LINK_URL, { platform, socialMediaId, customerId, email }, req.session.customer)
     .then(data => {
       if (data.statusCode === 201) {
-        res.send(data.body);
+        res.sendStatus(data.statusCode);
+      } else if (data.statusCode === 409) {
+        res.status(data.statusCode).send({ error: errorMessages.socialMediaLink.usedEmail });
       } else {
         res.sendStatus(500);
       }
@@ -181,11 +165,11 @@ const addSocialMediaLink = (req, res) => {
 const addAddress = (req, res) => {
   const customerId = getCustomerId(req);
   const {
-    line1, line2, cityId, zipCode, title, latitude, longitude
+    line1, line2, cityId, zipCode, title, latitude, longitude, mobile
   } = req.body;
 
   apiPostRequest(ADD_ADDRESS_URL, {
-    customerId, line1, line2, cityId, zipCode, title, latitude, longitude
+    customerId, line1, line2, cityId, zipCode, title, latitude, longitude, mobile
   }, req.session.customer)
     .then(data => {
       if (data.statusCode !== 200) {
@@ -205,7 +189,6 @@ const addVehicle = (req, res) => {
       if (data.statusCode !== 200) {
         res.sendStatus(500);
       } else {
-        console.log(data.body);
 
         res.send(data.body);
       }
@@ -309,7 +292,6 @@ module.exports = {
   signup,
   accountVerification,
   registerEmail,
-  registerSocialMedia,
   matchCode,
   addSocialMediaLink,
   addAddress,

@@ -32,5 +32,11 @@
     "Your old password did not match"
    ]
   }
+ },
+ "socialMediaLink": {
+     "usedEmail": [
+         "هذا الحساب قيد الاستخدام",
+         "this account is being used"
+     ]
  }
 }
