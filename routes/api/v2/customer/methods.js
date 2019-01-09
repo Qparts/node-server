@@ -4,7 +4,7 @@ const _ = require('lodash');
 
 const {
   SIGNUP_URL, ACCOUNT_VERIFY_URL, EMAIL_REGISTER_URL, LOGIN_URL, SOCIAL_MEDIA_AUTH_URL, RESET_PASSWORD_URL, RESET_SMS_URL, SOCIAL_MEDIA_LINK_URL,
-  ADD_ADDRESS_URL, ADD_VEHICLE_URL, CHANGE_EMAIL_URL, CHANGE_PASSWORD_URL, CHANGE_NAME_URL
+  ADD_ADDRESS_URL, ADD_VEHICLE_URL, CHANGE_EMAIL_URL, CHANGE_PASSWORD_URL, CHANGE_NAME_URL, LOGOUT_URL
 } = require('../../../constants')
 
 const { invalidToken } = require('../../constants');
@@ -61,7 +61,7 @@ const resetPasswordToken = (req, res) => {
 
 const updatePassword = (req, res) => {
   const { password, query: { token } } = req.body;
-  
+
   apiPutRequest(RESET_PASSWORD_URL, { password, token })
     .then(data => {
       if (data.statusCode !== 200) {
@@ -199,12 +199,14 @@ const addAddress = (req, res) => {
 const addVehicle = (req, res) => {
   const customerId = getCustomerId(req);
   const { vehicleYearId, vin } = req.body;
-  
+
   apiPostRequest(ADD_VEHICLE_URL, { customerId, vehicleYearId, vin }, req.session.customer)
     .then(data => {
       if (data.statusCode !== 200) {
         res.sendStatus(500);
       } else {
+        console.log(data.body);
+
         res.send(data.body);
       }
     });
@@ -271,8 +273,16 @@ const saveCurrentCustomer = (req, data) => {
 }
 
 const logout = (req, res) => {
-  req.session.destroy();
-  res.sendStatus(204);
+  const customerId = getCustomerId(req);
+  apiPostRequest(LOGOUT_URL, customerId, req.session.customer)
+    .then(data => {
+      if (data.statusCode !== 200) {
+        res.sendStatus(500);
+      } else {
+        req.session.destroy();
+        res.sendStatus(204);
+      }
+    });
 }
 
 const getCustomerId = (req) => {

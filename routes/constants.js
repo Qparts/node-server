@@ -17,6 +17,7 @@ const COUNTRIES_ONLY = 'countries-only';
 const RESET_PASSWORD = 'reset-password';
 const PASSWORD = 'password';
 const VEHICLE = 'vehicle';
+const LOGOUT = 'logout';
 
 
 const LOGIN_URL = `${CUSTOMER_SERVICE}${API_V2}/${LOGIN}`;
@@ -33,6 +34,7 @@ const RESET_SMS_URL = `${CUSTOMER_SERVICE}${API_V2}/reset-sms/mobile`;
 const CHANGE_NAME_URL = `${CUSTOMER_SERVICE}${API_V2}/customer`;
 const CHANGE_EMAIL_URL = `${CUSTOMER_SERVICE}${API_V2}/change-email`;
 const CHANGE_PASSWORD_URL = `${CUSTOMER_SERVICE}${API_V2}/${PASSWORD}`;
+const LOGOUT_URL = `${CUSTOMER_SERVICE}${API_V2}/${LOGOUT}`;
 const FIND_CITY_URL = `${LOCATION_SERVICE}${API_V2}/find-city`;
 const COUNTRIES_URL = `${LOCATION_SERVICE}${API_V2}/countries`;
 const COUNTRIES_ONLY_URL = `${LOCATION_SERVICE}${API_V2}/${COUNTRIES_ONLY}`;
@@ -70,6 +72,7 @@ module.exports = {
  GET_PRODUCTS_BEST_SELLERS,
  GET_PRODUCTS_OFFERS,
  GET_PRODUCT,
+ LOGOUT_URL,
 
  LOGIN,
  SIGNUP,
@@ -78,5 +81,6 @@ module.exports = {
  COUNTRIES_ONLY,
  RESET_PASSWORD,
  VEHICLE,
- PASSWORD
+ PASSWORD,
+ LOGOUT
 }
