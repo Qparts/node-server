@@ -6,7 +6,7 @@ const {
 } = require('./methods');
 
 const {
-    LOGIN, SIGNUP, ACCOUNT_VERIFY, SOCIAL_MEDIA_AUTH, RESET_PASSWORD, VEHICLE
+    LOGIN, SIGNUP, ACCOUNT_VERIFY, SOCIAL_MEDIA_AUTH, RESET_PASSWORD, VEHICLE, PASSWORD
 } = require('../../../constants');
 
 router.put('/', editName);
@@ -27,7 +27,7 @@ router.post('/register/email', matchCode, registerEmail);
 router.post('/register/social-media', matchCode, registerSocialMedia);
 router.post('/change-email', changeEmailSendLink);
 router.put('/change-email', changeEmailVerification);
-router.put('/password', changePassword);
+router.put(`/${PASSWORD}`, changePassword);
 router.get('/logout', logout);
 
 module.exports = router;
