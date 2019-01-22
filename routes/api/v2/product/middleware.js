@@ -2,6 +2,7 @@ const { GET_PRODUCTS_BEST_SELLERS, GET_PRODUCTS_OFFERS, GET_PRODUCT } = require(
 const { apiGetRequest, apiPostRequest, apiPutRequest } = require('../../apiRequest');
 
 const bestSellers = (req, res) => {
+	
 	apiGetRequest(GET_PRODUCTS_BEST_SELLERS, req.session.customer)
 		.then(data => {
 			if (data.statusCode !== 200) {
