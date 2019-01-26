@@ -24,6 +24,7 @@ const ADDRESS = 'address';
 const PRODUCT = 'product';
 const BEST_SELLERS = 'products/best-sellers';
 const OFFERS = 'products/offers';
+const  WIRE_TRANSFER = 'cart/wire-transfer';
 
 
 const LOGIN_URL = `${CUSTOMER_SERVICE}/${API_V2}/${LOGIN}`;
@@ -45,8 +46,9 @@ const COUNTRIES_URL = `${LOCATION_SERVICE}/${API_V2}/countries`;
 const COUNTRIES_ONLY_URL = `${LOCATION_SERVICE}/${API_V2}/${COUNTRIES_ONLY}`;
 const REGIONS_URL = `${LOCATION_SERVICE}/${API_V2}/regions/country-id`;
 const GET_MAKES_URL = `${VEHICLE_SERVICE}/${API_V1}/makes`;
-const GET_QUOTATION_CART_URL = `${CART_SERVICE}/${API_V1}/quotation-carts/customer`;
-const ADD_QUOTATION_CART_URL = `${CART_SERVICE}/${API_V1}/quotation-cart`;
+const GET_QUOTATION_CART_URL = `${CART_SERVICE}/${API_V2}/quotation-carts/customer`;
+const ADD_QUOTATION_CART_URL = `${CART_SERVICE}/${API_V2}/quotation-cart`;
+const POST_WIRE_TRANSFER_CART_URL = `${CART_SERVICE}/${API_V2}/${WIRE_TRANSFER}`;
 const GET_PRODUCTS_BEST_SELLERS = `${PRODUCT_SERVICE}/${API_V2}/${BEST_SELLERS}`;
 const GET_PRODUCTS_OFFERS = `${PRODUCT_SERVICE}/${API_V2}/${OFFERS}`;
 const GET_PRODUCT = `${PRODUCT_SERVICE}/${API_V2}/${PRODUCT}`;
@@ -77,6 +79,7 @@ module.exports = {
     GET_PRODUCTS_OFFERS,
     GET_PRODUCT,
     LOGOUT_URL,
+    POST_WIRE_TRANSFER_CART_URL,
 
     LOGIN,
     SIGNUP,
@@ -91,5 +94,6 @@ module.exports = {
     ADDRESS,
     PRODUCT,
     BEST_SELLERS,
-    OFFERS
+    OFFERS,
+    WIRE_TRANSFER
 }
