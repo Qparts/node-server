@@ -3,7 +3,7 @@ const {
 	PUT_PAYMENT_3DSECURE_RESPONSE_URL
 } = require('../../../constants');
 const { apiGetRequest, apiPostRequest, apiPutRequest } = require('../../apiRequest');
-const { getCustomerId } = require('../../utils')
+const { getCustomerId } = require('../../../../utils');
 
 const getQuotation = (req, res) => {
 	const { customerId } = req.params;
