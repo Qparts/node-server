@@ -41,55 +41,34 @@ const addCart = (req, res) => {
 }
 
 const wireTransfer = (req, res) => {
-	const body = {
-		customerId: 4,
-		addressId: 1,
-		deliveryCharges: 100.50,
-		discountId: null,
-		preferredCuorier: 0,
-		cartItems: [
-			{
-				productId: 1,
-				quantity: 3,
-				salesPrice: 300.30
-			}
-		]
-	}
-
+	const { addressId, cartItems } = req.body;
+	const customerId = getCustomerId(req);
+	const deliveryCharges = 35;
+	const discountId = null;
+	const preferredCuorier = null;
+	const body = { customerId, addressId, cartItems, deliveryCharges, discountId, preferredCuorier }
+	
 	apiPostRequest(POST_WIRE_TRANSFER_CART_URL, body, req.session.customer)
 		.then(data => {
-			if (data.statusCode !== 200) {
-				res.sendStatus(500);
-			} else {
+			if (data.statusCode === 200) {
 				res.send(data.body);
+			} else {
+				res.sendStatus(data.statusCode);
 			}
 		});
 }
 
 const creditCard = (req, res) => {
-	const body = {
-		customerId: 4,
-		addressId: 1,
-		deliveryCharges: 100.50,
-		discountId: null,
-		preferredCuorier: 0,
-		cartItems: [
-			{
-				productId: 1,
-				quantity: 3,
-				salesPrice: 300.30
-			}
-		],
-		ccMonth: 01,
-		ccYear: 2021,
-		ccName: 'Ahmed S Shaaban',
-		ccNumber: '4111111111111111',
-		ccCvc: '111',
-	}
+	const { addressId, cartItems, creditCard } = req.body;
+	const customerId = getCustomerId(req);
+	const deliveryCharges = 35;
+	const discountId = null;
+	const preferredCuorier = null;
+	const body = { customerId, addressId, cartItems, ...creditCard, deliveryCharges, discountId, preferredCuorier }
 
 	apiPostRequest(POST_CREDIT_CARD_CART_URL, body, req.session.customer)
 		.then(data => {
-			if (data.statusCode !== 201) {
+			if (data.statusCode === 201) {
 				res.send(data.body);
 			} else {
 				res.sendStatus(data.statusCode);

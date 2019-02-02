@@ -8,5 +8,6 @@ router.use(`${V2}/location`, require('./v2/location'));
 router.use(`${V2}/vehicle`, require('./v2/vehicle'));
 router.use(`${V2}/cart`, require('./v2/cart'));
 router.use(`${V2}/product`, require('./v2/product'));
+router.use(`${V2}/quotation`, require('./v2/quotation'));
 
 module.exports = router;

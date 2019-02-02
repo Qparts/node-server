@@ -24,10 +24,11 @@ const ADDRESS = 'address';
 const PRODUCT = 'product';
 const BEST_SELLERS = 'products/best-sellers';
 const OFFERS = 'products/offers';
-const  WIRE_TRANSFER = 'cart/wire-transfer';
-const  CREDIT_CARD = 'cart/credit-card';
-const  PAYMENT_3DSECURE_RESPONSE = 'payment/3dsecure-response';
+const WIRE_TRANSFER = 'cart/wire-transfer';
+const CREDIT_CARD = 'cart/credit-card';
+const PAYMENT_3DSECURE_RESPONSE = 'payment/3dsecure-response';
 const SEARCH_GENERAL = 'search/general';
+const QUOTATION_CUSTOMER = 'quotations/customer';
 
 
 const LOGIN_URL = `${CUSTOMER_SERVICE}/${API_V2}/${LOGIN}`;
@@ -63,6 +64,8 @@ const GET_PRODUCTS_OFFERS = `${PRODUCT_SERVICE}/${API_V2}/${OFFERS}`;
 const GET_PRODUCT = `${PRODUCT_SERVICE}/${API_V2}/${PRODUCT}`;
 const GET_GENERAL_SEARCH = `${PRODUCT_SERVICE}/${API_V2}`;
 
+const GET_QUOTATIONS_URL = `${QUOTATION_SERVICE}/${API_V2}/${QUOTATION_CUSTOMER}`;
+
 module.exports = {
     BASE_URL,
     LOGIN_URL,
@@ -93,6 +96,7 @@ module.exports = {
     POST_CREDIT_CARD_CART_URL,
     PUT_PAYMENT_3DSECURE_RESPONSE_URL,
     GET_GENERAL_SEARCH,
+    GET_QUOTATIONS_URL,
 
     LOGIN,
     SIGNUP,
@@ -111,5 +115,6 @@ module.exports = {
     WIRE_TRANSFER,
     CREDIT_CARD,
     PAYMENT_3DSECURE_RESPONSE,
-    SEARCH_GENERAL
+    SEARCH_GENERAL,
+    QUOTATION_CUSTOMER
 }
