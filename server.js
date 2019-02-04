@@ -36,11 +36,11 @@ if (!isProduction) {
  app.use(errorhandler());
 }
 
-app.use(express.static(path.join(__dirname, 'public/build')))
+app.use(express.static('/srv/q-parts/build'))
 app.use(routes);
 
 app.get('/*', (req, res) => {
- res.sendFile(path.join(__dirname, 'public/build/index.html'), err => {
+ res.sendFile('/srv/q-parts/build/index.html', err => {
   if (err) {
    res.status(500).send(err)
   }
