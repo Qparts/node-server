@@ -3,7 +3,7 @@ const {
 	PUT_PAYMENT_3DSECURE_RESPONSE_URL
 } = require('../../../constants');
 const { apiGetRequest, apiPostRequest, apiPutRequest } = require('../../apiRequest');
-const { getCustomerId } = require('../../../../utils');
+const { customer } = require('../../../../utils');
 
 const getQuotation = (req, res) => {
 	const { customerId } = req.params;
@@ -42,7 +42,7 @@ const addCart = (req, res) => {
 
 const wireTransfer = (req, res) => {
 	const { addressId, cartItems } = req.body;
-	const customerId = getCustomerId(req);
+	const customerId = customer.getCustomerId(req);
 	const deliveryCharges = 35;
 	const discountId = null;
 	const preferredCuorier = null;
@@ -60,7 +60,7 @@ const wireTransfer = (req, res) => {
 
 const creditCard = (req, res) => {
 	const { addressId, cartItems, creditCard } = req.body;
-	const customerId = getCustomerId(req);
+	const customerId = customer.getCustomerId(req);
 	const deliveryCharges = 35;
 	const discountId = null;
 	const preferredCuorier = null;
@@ -78,7 +78,7 @@ const creditCard = (req, res) => {
 
 const paymentResponse = (req, res) => {
 	const { cartId, id, status, message } = req.query;
-	const customerId = getCustomerId(req);
+	const customerId = customer.getCustomerId(req);
 
 	apiPutRequest(PUT_PAYMENT_3DSECURE_RESPONSE_URL, { cartId, id, status, customerId }, req.session.customer)
 		.then(data => {

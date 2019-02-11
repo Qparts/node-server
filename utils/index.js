@@ -1,2 +1,7 @@
-module.exports = { getCustomerId } = require('./customer');
-module.exports = { getBaseURL } = require('./urls');
+const customer = require('./customer');
+const urls = require('./urls');
+
+module.exports = {
+    customer,
+    urls
+}

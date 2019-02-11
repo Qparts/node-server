@@ -1,6 +1,6 @@
-const { getBaseURL } = require('../utils');
+const { urls } = require('../utils');
 
-const BASE_URL = getBaseURL();
+const BASE_URL = urls.getBaseURL();
 
 const CUSTOMER_SERVICE = 'service-q-customer';
 const LOCATION_SERVICE = 'service-q-location';
