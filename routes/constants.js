@@ -31,6 +31,7 @@ const CREDIT_CARD = 'cart/credit-card';
 const PAYMENT_3DSECURE_RESPONSE = 'payment/3dsecure-response';
 const SEARCH_GENERAL = 'search/general';
 const QUOTATION_CUSTOMER = 'quotations/customer';
+const BANKS = 'banks';
 
 
 const LOGIN_URL = `${CUSTOMER_SERVICE}/${API_V2}/${LOGIN}`;
@@ -59,6 +60,7 @@ const GET_QUOTATION_CART_URL = `${CART_SERVICE}/${API_V2}/quotation-carts/custom
 const ADD_QUOTATION_CART_URL = `${CART_SERVICE}/${API_V2}/quotation-cart`;
 const POST_WIRE_TRANSFER_CART_URL = `${CART_SERVICE}/${API_V2}/${WIRE_TRANSFER}`;
 const POST_CREDIT_CARD_CART_URL = `${CART_SERVICE}/${API_V2}/${CREDIT_CARD}`;
+const GET_BANKS_URL = `${CART_SERVICE}/${API_V2}/${BANKS}`;
 const PUT_PAYMENT_3DSECURE_RESPONSE_URL = `${CART_SERVICE}/${API_V2}/${PAYMENT_3DSECURE_RESPONSE}`;
 
 const GET_PRODUCTS_BEST_SELLERS = `${PRODUCT_SERVICE}/${API_V2}/${BEST_SELLERS}`;
@@ -101,6 +103,7 @@ module.exports = {
     GET_GENERAL_SEARCH,
     GET_QUOTATIONS_URL,
     POST_QUOTATIONS_URL,
+    GET_BANKS_URL,
 
     LOGIN,
     SIGNUP,
@@ -120,5 +123,6 @@ module.exports = {
     CREDIT_CARD,
     PAYMENT_3DSECURE_RESPONSE,
     SEARCH_GENERAL,
-    QUOTATION_CUSTOMER
+    QUOTATION_CUSTOMER,
+    BANKS
 }

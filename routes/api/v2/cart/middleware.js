@@ -1,6 +1,6 @@
 const {
 	GET_QUOTATION_CART_URL, ADD_QUOTATION_CART_URL, POST_WIRE_TRANSFER_CART_URL, POST_CREDIT_CARD_CART_URL,
-	PUT_PAYMENT_3DSECURE_RESPONSE_URL
+	PUT_PAYMENT_3DSECURE_RESPONSE_URL, GET_BANKS_URL
 } = require('../../../constants');
 const { apiGetRequest, apiPostRequest, apiPutRequest } = require('../../apiRequest');
 const { customer } = require('../../../../utils');
@@ -90,11 +90,23 @@ const paymentResponse = (req, res) => {
 		});
 }
 
+const getBanks = (req, res) => {
+	apiGetRequest(GET_BANKS_URL, req.session.customer)
+		.then(data => {
+			if (data.statusCode !== 201) {
+				res.send(data.body);
+			} else {
+				res.sendStatus(data.statusCode);
+			}
+		});
+}
+
 module.exports = {
 	getQuotation,
 	addCart,
 	getRepliedQuotation,
 	wireTransfer,
 	creditCard,
-	paymentResponse
+	paymentResponse,
+	getBanks
 }
