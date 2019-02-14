@@ -64,10 +64,7 @@ const creditCard = (req, res) => {
 	const deliveryCharges = 35;
 	const discountId = null;
 	const preferredCuorier = null;
-	const body = { customerId, addressId, cartItems, ...creditCard, deliveryCharges, discountId, preferredCuorier }
-
-	console.log(body);
-	
+	const body = { customerId, addressId, cartItems, ...creditCard, deliveryCharges, discountId, preferredCuorier }	
 
 	apiPostRequest(POST_CREDIT_CARD_CART_URL, body, req.session.customer)
 		.then(data => {
