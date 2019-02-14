@@ -66,10 +66,13 @@ const creditCard = (req, res) => {
 	const preferredCuorier = null;
 	const body = { customerId, addressId, cartItems, ...creditCard, deliveryCharges, discountId, preferredCuorier }
 
+	console.log(body);
+	
+
 	apiPostRequest(POST_CREDIT_CARD_CART_URL, body, req.session.customer)
 		.then(data => {
-			if (data.statusCode === 201) {
-				res.send(data.body);
+			if (data.statusCode === 202 || data.statusCode === 201) {
+				res.status(data.statusCode).send(data.body);
 			} else {
 				res.sendStatus(data.statusCode);
 			}
