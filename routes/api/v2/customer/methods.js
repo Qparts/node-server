@@ -60,7 +60,7 @@ const resetPasswordToken = (req, res) => {
 }
 
 const updatePassword = (req, res) => {
-  const { password, query: { token } } = req.body;
+  const { password, token } = req.body;
 
   apiPutRequest(RESET_PASSWORD_URL, { password, token })
     .then(data => {
@@ -165,11 +165,11 @@ const addSocialMediaLink = (req, res) => {
 const addAddress = (req, res) => {
   const customerId = getCustomerId(req);
   const {
-    line1, line2, cityId, zipCode, title, latitude, longitude, mobile
+    line1, line2, cityId, zipCode, title, latitude, longitude, mobile, defaultAddress
   } = req.body;
 
   apiPostRequest(ADD_ADDRESS_URL, {
-    customerId, line1, line2, cityId, zipCode, title, latitude, longitude, mobile
+    customerId, line1, line2, cityId, zipCode, title, latitude, longitude, mobile, defaultAddress
   }, req.session.customer)
     .then(data => {
       if (data.statusCode !== 200) {
@@ -182,9 +182,10 @@ const addAddress = (req, res) => {
 
 const addVehicle = (req, res) => {
   const customerId = getCustomerId(req);
-  const { vehicleYearId, vin } = req.body;
+  const { vehicleYearId, vin, defaultVehicle } = req.body;
+  
 
-  apiPostRequest(ADD_VEHICLE_URL, { customerId, vehicleYearId, vin }, req.session.customer)
+  apiPostRequest(ADD_VEHICLE_URL, { customerId, vehicleYearId, vin, defaultVehicle }, req.session.customer)
     .then(data => {
       if (data.statusCode !== 200) {
         res.sendStatus(500);

@@ -93,7 +93,7 @@ const paymentResponse = (req, res) => {
 const getBanks = (req, res) => {
 	apiGetRequest(GET_BANKS_URL, req.session.customer)
 		.then(data => {
-			if (data.statusCode !== 201) {
+			if (data.statusCode === 200) {
 				res.send(data.body);
 			} else {
 				res.sendStatus(data.statusCode);
