@@ -11,6 +11,7 @@ require('dotenv').config();
 const session = require('express-session');
 const routes = require('./routes/index');
 const crypto = require('crypto');
+const fallback = require('express-history-api-fallback')
 const buildPath = '/srv/q-parts/build';
 
 // Create global app object
@@ -38,6 +39,7 @@ if (!isProduction) {
 }
 
 app.use(express.static(`${buildPath}`))
+app.use(fallback('index.html', { root: buildPath }))
 app.use(routes);
 
 app.get('/*', (req, res) => {
