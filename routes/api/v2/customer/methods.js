@@ -99,7 +99,7 @@ const login = (req, res) => {
 }
 
 const socialMediaAuth = (req, res) => {
-  apiPostRequest(SOCIAL_MEDIA_AUTH_URL, req.body)
+  apiPostRequest(SOCIAL_MEDIA_AUTH_URL, {...req.body, countryId: 1})
     .then(data => {
       if (data.statusCode !== 200) {
         res.sendStatus(data.statusCode);
