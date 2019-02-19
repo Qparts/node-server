@@ -16,6 +16,11 @@ const buildPath = 'public/build';
 // Create global app object
 const app = express();
 
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+}));
+
 app.use(session({
     secret: crypto.randomBytes(12).toString('hex'),
     cookie: { secure: false },
