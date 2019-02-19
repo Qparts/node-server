@@ -11,14 +11,11 @@ require('dotenv').config();
 const session = require('express-session');
 const routes = require('./routes/index');
 const crypto = require('crypto');
+const buildPath = 'public/build';
 
 // Create global app object
 const app = express();
 
-app.use(cors({
-    origin: 'http://localhost:3000',
-    credentials: true
-}));
 app.use(session({
     secret: crypto.randomBytes(12).toString('hex'),
     cookie: { secure: false },
@@ -36,11 +33,11 @@ if (!isProduction) {
     app.use(errorhandler());
 }
 
-app.use(express.static('/srv/q-parts/build'))
+app.use(express.static(`${__dirname}/${buildPath}`))
 app.use(routes);
 
-app.get('/*', (req, res) => {
-    res.sendFile('/srv/q-parts/build/index.html', err => {
+app.get('*', (req, res) => {
+    res.sendFile(`${__dirname}/${buildPath}/index.html`, err => {
         if (err) {
             res.status(500).send(err)
         }
@@ -51,20 +48,20 @@ app.get('/*', (req, res) => {
 
 // development error handler
 // will print stacktrace
-// if (!isProduction) {
-//  app.use(function (err, req, res, next) {
-//   console.log(err.stack);
+if (!isProduction) {
+    app.use(function (err, req, res, next) {
+        console.log(err.stack);
 
-//   res.status(err.status || 500);
+        res.status(err.status || 500);
 
-//   res.json({
-//    'errors': {
-//     message: err.message,
-//     error: err
-//    }
-//   });
-//  });
-// }
+        res.json({
+            'errors': {
+                message: err.message,
+                error: err
+            }
+        });
+    });
+}
 
 // production error handler
 // no stacktraces leaked to user
