@@ -41,11 +41,6 @@ if (!isProduction) {
 app.use(express.static(`${__dirname}/${buildPath}`))
 app.use(routes);
 
-app.use((req, res, next) => {
-    res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
-    next()
-});
-
 app.get('*', (req, res) => {
     res.sendFile(`${__dirname}/${buildPath}/index.html`, err => {
         if (err) {
