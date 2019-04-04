@@ -11,6 +11,7 @@ require('dotenv').config();
 const session = require('express-session');
 const routes = require('./routes/index');
 const crypto = require('crypto');
+const nocache = require('nocache');
 const buildPath = 'public/build';
 
 // Create global app object
@@ -40,6 +41,8 @@ if (!isProduction) {
 
 app.use(express.static(`${__dirname}/${buildPath}`))
 app.use(routes);
+app.use(nocache());
+
 
 app.get('*', (req, res) => {
     res.sendFile(`${__dirname}/${buildPath}/index.html`, err => {

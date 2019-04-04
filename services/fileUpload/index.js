@@ -9,7 +9,9 @@ const upload = (image, itemName) => {
     Key: itemName, 
     Body: buf,
     ContentEncoding: 'base64',
-    ContentType: 'image/png'
+    ContentType: 'image/png',
+    ACL: 'public-read',
+    
   };
   s3.putObject(params, function(err, data){
       if (err) { 

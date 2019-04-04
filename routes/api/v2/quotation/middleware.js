@@ -59,7 +59,7 @@ const postQuotation = (req, res) => {
 				
 				parseData.items.forEach(async(item) => {
 					filterQuotationItems.forEach(quotationItem => {
-						if(item.tempId === quotationItem.tempId && hasImage) {
+						if(item.tempId === quotationItem.tempId) {
 							upload(quotationItem.image, item.imageName);
 						}
 					});
@@ -71,6 +71,7 @@ const postQuotation = (req, res) => {
 			}
 
 		});
+				// res.sendStatus(200);
 }
 
 module.exports = {
