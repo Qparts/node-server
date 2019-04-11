@@ -33,7 +33,7 @@ app.use(session({
 // Normal express config defaults
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '500kb'}));
 
 if (!isProduction) {
     app.use(errorhandler());

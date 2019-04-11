@@ -50,7 +50,8 @@ const postQuotation = (req, res) => {
 		return quotationItem.hasImage;
 	});
 
-	const body = { ...req.body, customerId, quotationItems: cloneQuotationItems }
+	const { vinImage, ...filteredBody } = req.body;
+	const body = { ...filteredBody, customerId, quotationItems: cloneQuotationItems }
 
 	apiPostRequest(POST_QUOTATIONS_URL, body, req.session.customer)
 		.then(data => {
@@ -60,10 +61,15 @@ const postQuotation = (req, res) => {
 				parseData.items.forEach(async(item) => {
 					filterQuotationItems.forEach(quotationItem => {
 						if(item.tempId === quotationItem.tempId) {
-							upload(quotationItem.image, item.imageName);
+							upload(quotationItem.image, item.imageName, process.env.AWS_BUCKET_QUOTATION_ITEM);
 						}
 					});
 				});
+
+				if(body.imageAttached) {
+					upload(vinImage, parseData.vehicleImageName, process.env.AWS_BUCKET_VIN);
+				}
+
 				res.send(data.body);
 
 			} else {
@@ -71,7 +77,6 @@ const postQuotation = (req, res) => {
 			}
 
 		});
-				// res.sendStatus(200);
 }
 
 module.exports = {

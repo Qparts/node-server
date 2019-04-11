@@ -2,16 +2,14 @@ const aws = require('aws-sdk');
 
 const s3 = new aws.S3();
 
-const upload = (image, itemName) => {
+const upload = (image, itemName, bucketName) => {
   buf = new Buffer.from(image.replace(/^data:image\/\w+;base64,/, ""),'base64');
   const params = {
-    Bucket: process.env.AWS_BUCKET, 
+    Bucket: bucketName, 
     Key: itemName, 
     Body: buf,
     ContentEncoding: 'base64',
     ContentType: 'image/png',
-    ACL: 'public-read',
-    
   };
   s3.putObject(params, function(err, data){
       if (err) { 
