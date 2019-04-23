@@ -192,7 +192,8 @@ const addVehicle = (req, res) => {
       if (data.statusCode !== 200) {
         res.sendStatus(500);
       } else {
-        const id = data.body.id;
+        const parseData = JSON.parse(data.body);
+        const id = parseData.id;
         const name = `${id}.png`;
         if (vinImage) {
           upload(vinImage, name, process.env.AWS_BUCKET_VIN);
