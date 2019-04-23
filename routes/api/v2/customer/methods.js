@@ -1,6 +1,7 @@
 const errorMessages = require.main.require('./errorMessages.json');
 const { apiGetRequest, apiPostRequest, apiPutRequest } = require('../../apiRequest');
 const _ = require('lodash');
+const upload = require('../../../../services/fileUpload');
 
 const {
   SIGNUP_URL, ACCOUNT_VERIFY_URL, EMAIL_REGISTER_URL, LOGIN_URL, SOCIAL_MEDIA_AUTH_URL, RESET_PASSWORD_URL, RESET_SMS_URL, SOCIAL_MEDIA_LINK_URL,
@@ -182,15 +183,20 @@ const addAddress = (req, res) => {
 
 const addVehicle = (req, res) => {
   const customerId = getCustomerId(req);
-  const { vehicleYearId, vin, defaultVehicle } = req.body;
+  const { vehicleYearId, vin, defaultVehicle, vinImage } = req.body;
+  const imageAttached = vinImage ? true : false;
   
-
-  apiPostRequest(ADD_VEHICLE_URL, { customerId, vehicleYearId, vin, defaultVehicle }, req.session.customer)
+  
+  apiPostRequest(ADD_VEHICLE_URL, { customerId, vehicleYearId, vin, defaultVehicle, imageAttached }, req.session.customer)
     .then(data => {
       if (data.statusCode !== 200) {
         res.sendStatus(500);
       } else {
-
+        const id = data.body.id;
+        const name = `${id}.png`;
+        if (vinImage) {
+          upload(vinImage, name, process.env.AWS_BUCKET_VIN);
+        }
         res.send(data.body);
       }
     });
