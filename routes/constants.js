@@ -32,6 +32,7 @@ const PAYMENT_3DSECURE_RESPONSE = 'payment/3dsecure-response';
 const SEARCH_GENERAL = 'search/general';
 const QUOTATION_CUSTOMER = 'quotations/customer';
 const BANKS = 'banks';
+const QUOTATION_COMLETED_READ = 'quotation/read';
 
 
 const LOGIN_URL = `${CUSTOMER_SERVICE}/${API_V2}/${LOGIN}`;
@@ -70,6 +71,7 @@ const GET_GENERAL_SEARCH = `${PRODUCT_SERVICE}/${API_V2}`;
 
 const GET_QUOTATIONS_URL = `${QUOTATION_SERVICE}/${API_V2}/${QUOTATION_CUSTOMER}`;
 const POST_QUOTATIONS_URL = `${QUOTATION_SERVICE}/${API_V2}/quotation`;
+const PUT_QUOTATIONS_COMPLETED_READ_URL = `${QUOTATION_SERVICE}/${API_V2}/${QUOTATION_COMLETED_READ}`;
 
 module.exports = {
     BASE_URL,
@@ -104,6 +106,7 @@ module.exports = {
     GET_QUOTATIONS_URL,
     POST_QUOTATIONS_URL,
     GET_BANKS_URL,
+    PUT_QUOTATIONS_COMPLETED_READ_URL,
 
     LOGIN,
     SIGNUP,
@@ -124,5 +127,6 @@ module.exports = {
     PAYMENT_3DSECURE_RESPONSE,
     SEARCH_GENERAL,
     QUOTATION_CUSTOMER,
-    BANKS
+    BANKS,
+    QUOTATION_COMLETED_READ
 }

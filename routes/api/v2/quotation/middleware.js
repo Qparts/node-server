@@ -1,5 +1,5 @@
 const {
-	GET_QUOTATIONS_URL, POST_QUOTATIONS_URL
+	GET_QUOTATIONS_URL, POST_QUOTATIONS_URL, PUT_QUOTATIONS_COMPLETED_READ_URL
 } = require('../../../constants');
 const { apiGetRequest, apiPostRequest, apiPutRequest } = require('../../apiRequest');
 const { customer } = require('../../../../utils');
@@ -39,11 +39,12 @@ const postQuotation = (req, res) => {
 	});
 
 	cloneQuotationItems = quotationItems.map(quotationItem => {
-		return { 
-			quantity: quotationItem.quantity, 
-			itemName: quotationItem.itemName, 
-			hasImage: quotationItem.hasImage, 
-			tempId: quotationItem.tempId };
+		return {
+			quantity: quotationItem.quantity,
+			itemName: quotationItem.itemName,
+			hasImage: quotationItem.hasImage,
+			tempId: quotationItem.tempId
+		};
 	});
 
 	const filterQuotationItems = quotationItems.filter(quotationItem => {
@@ -57,16 +58,16 @@ const postQuotation = (req, res) => {
 		.then(data => {
 			if (data.statusCode === 200) {
 				const parseData = JSON.parse(data.body);
-				
-				parseData.items.forEach(async(item) => {
+
+				parseData.items.forEach(async (item) => {
 					filterQuotationItems.forEach(quotationItem => {
-						if(item.tempId === quotationItem.tempId) {
+						if (item.tempId === quotationItem.tempId) {
 							upload(quotationItem.image, item.imageName, process.env.AWS_BUCKET_QUOTATION_ITEM);
 						}
 					});
 				});
 
-				if(body.imageAttached) {
+				if (body.imageAttached) {
 					upload(vinImage, parseData.vehicleImageName, process.env.AWS_BUCKET_VIN);
 				}
 
@@ -79,8 +80,20 @@ const postQuotation = (req, res) => {
 		});
 }
 
+const putCompletedRequestRead = (req, res) => {
+	const { customerId } = req.params;
+	const { quotationId } = req.body;
+	console.log(quotationId);
+
+	apiPutRequest(PUT_QUOTATIONS_COMPLETED_READ_URL, { customerId, quotationId }, req.session.customer)
+		.then(data => {
+			res.sendStatus(data.statusCode);
+		});
+}
+
 module.exports = {
 	getPendingRequests,
 	getCompletedRequests,
-	postQuotation
+	postQuotation,
+	putCompletedRequestRead
 }
