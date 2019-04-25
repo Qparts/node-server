@@ -1,5 +1,5 @@
 const {
-	GET_QUOTATIONS_URL, POST_QUOTATIONS_URL, PUT_QUOTATIONS_COMPLETED_READ_URL
+	GET_QUOTATIONS_URL, POST_QUOTATIONS_URL, PUT_QUOTATION_READ_URL
 } = require('../../../constants');
 const { apiGetRequest, apiPostRequest, apiPutRequest } = require('../../apiRequest');
 const { customer } = require('../../../../utils');
@@ -80,12 +80,11 @@ const postQuotation = (req, res) => {
 		});
 }
 
-const putCompletedRequestRead = (req, res) => {
+const putQuotationRequestRead = (req, res) => {
 	const { customerId } = req.params;
 	const { quotationId } = req.body;
-	console.log(quotationId);
 
-	apiPutRequest(PUT_QUOTATIONS_COMPLETED_READ_URL, { customerId, quotationId }, req.session.customer)
+	apiPutRequest(PUT_QUOTATION_READ_URL, { customerId, quotationId }, req.session.customer)
 		.then(data => {
 			res.sendStatus(data.statusCode);
 		});
@@ -95,5 +94,5 @@ module.exports = {
 	getPendingRequests,
 	getCompletedRequests,
 	postQuotation,
-	putCompletedRequestRead
+	putQuotationRequestRead
 }

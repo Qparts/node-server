@@ -1,13 +1,13 @@
 const router = require('express').Router();
 const { 
-    getPendingRequests, getCompletedRequests, postQuotation, putCompletedRequestRead
+    getPendingRequests, getCompletedRequests, postQuotation, putQuotationRequestRead
 } = require('./middleware');
 
-const { QUOTATION_CUSTOMER, QUOTATION_COMLETED_READ } = require('../../../constants');
+const { QUOTATION_CUSTOMER, QUOTATION_READ } = require('../../../constants');
 
 router.post('/', postQuotation);
 router.get(`/${QUOTATION_CUSTOMER}/:customerId/pending`, getPendingRequests);
 router.get(`/${QUOTATION_CUSTOMER}/:customerId/completed`, getCompletedRequests);
-router.put(`/${QUOTATION_COMLETED_READ}`, putCompletedRequestRead);
+router.put(`/${QUOTATION_READ}`, putQuotationRequestRead);
 
 module.exports = router;
