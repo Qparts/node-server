@@ -81,9 +81,8 @@ const postQuotation = (req, res) => {
 }
 
 const putQuotationRequestRead = (req, res) => {
-	const { customerId } = req.params;
+	const customerId = customer.getCustomerId(req);
 	const { quotationId } = req.body;
-
 	apiPutRequest(PUT_QUOTATION_READ_URL, { customerId, quotationId }, req.session.customer)
 		.then(data => {
 			res.sendStatus(data.statusCode);
