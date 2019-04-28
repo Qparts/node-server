@@ -13,6 +13,7 @@ const API_V1 = 'rest/api/v1';
 const API_V2 = 'rest/api/v2';
 
 const LOGIN = 'login';
+const CODE_LOGIN = 'code-login';
 const SIGNUP = 'signup';
 const ACCOUNT_VERIFY = 'account-verify';
 const SOCIAL_MEDIA_AUTH = 'social-media-auth';
@@ -36,6 +37,7 @@ const QUOTATION_READ = 'quotation/read';
 
 
 const LOGIN_URL = `${CUSTOMER_SERVICE}/${API_V2}/${LOGIN}`;
+const CODE_LOGIN_URL = `${CUSTOMER_SERVICE}/${API_V2}/${CODE_LOGIN}`;
 const SIGNUP_URL = `${CUSTOMER_SERVICE}/${API_V2}/${SIGNUP}`;
 const ACCOUNT_VERIFY_URL = `${CUSTOMER_SERVICE}/${API_V2}/${ACCOUNT_VERIFY}`;
 const ADD_ADDRESS_URL = `${CUSTOMER_SERVICE}/${API_V2}/${ADDRESS}`;
@@ -76,6 +78,7 @@ const PUT_QUOTATION_READ_URL = `${QUOTATION_SERVICE}/${API_V2}/${QUOTATION_READ}
 module.exports = {
     BASE_URL,
     LOGIN_URL,
+    CODE_LOGIN_URL,
     SIGNUP_URL,
     ACCOUNT_VERIFY_URL,
     EMAIL_REGISTER_URL,
@@ -109,6 +112,7 @@ module.exports = {
     PUT_QUOTATION_READ_URL,
 
     LOGIN,
+    CODE_LOGIN,
     SIGNUP,
     ACCOUNT_VERIFY,
     SOCIAL_MEDIA_AUTH,

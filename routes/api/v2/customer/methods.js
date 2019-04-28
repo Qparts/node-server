@@ -4,8 +4,8 @@ const _ = require('lodash');
 const upload = require('../../../../services/fileUpload');
 
 const {
-  SIGNUP_URL, ACCOUNT_VERIFY_URL, EMAIL_REGISTER_URL, LOGIN_URL, SOCIAL_MEDIA_AUTH_URL, RESET_PASSWORD_URL, RESET_SMS_URL, SOCIAL_MEDIA_LINK_URL,
-  ADD_ADDRESS_URL, ADD_VEHICLE_URL, CHANGE_EMAIL_URL, CHANGE_PASSWORD_URL, CHANGE_NAME_URL, LOGOUT_URL
+  SIGNUP_URL, ACCOUNT_VERIFY_URL, EMAIL_REGISTER_URL, LOGIN_URL, CODE_LOGIN_URL, SOCIAL_MEDIA_AUTH_URL, RESET_PASSWORD_URL, RESET_SMS_URL,
+   SOCIAL_MEDIA_LINK_URL, ADD_ADDRESS_URL, ADD_VEHICLE_URL, CHANGE_EMAIL_URL, CHANGE_PASSWORD_URL, CHANGE_NAME_URL, LOGOUT_URL
 } = require('../../../constants')
 
 const { invalidToken } = require('../../constants');
@@ -95,6 +95,18 @@ const login = (req, res) => {
         res.send(data.body);
       } else {
         res.status(data.statusCode).send(errorMessages.form.signin.incorrectPassword);
+      }
+    });
+}
+
+const postCodeLogin = (req, res) => {
+  apiPostRequest(CODE_LOGIN_URL, req.body)
+    .then(data => {
+      if (data.statusCode === 200) {
+        saveCurrentCustomer(req, data.body)
+        res.send(data.body);
+      } else {
+        res.sendStatus(data.statusCode);
       }
     });
 }
@@ -296,6 +308,7 @@ module.exports = {
   resetPasswordToken,
   resetPasswordSms,
   login,
+  postCodeLogin,
   socialMediaAuth,
   signup,
   accountVerification,
