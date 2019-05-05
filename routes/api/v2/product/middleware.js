@@ -3,7 +3,7 @@ const { apiGetRequest, apiPostRequest, apiPutRequest } = require('../../apiReque
 
 const bestSellers = (req, res) => {
 
-	apiGetRequest(GET_PRODUCTS_BEST_SELLERS, req.session.customer)
+	apiGetRequest(GET_PRODUCTS_BEST_SELLERS)
 		.then(data => {
 			if (data.statusCode !== 200) {
 				res.sendStatus(500);
@@ -14,7 +14,7 @@ const bestSellers = (req, res) => {
 }
 
 const offers = (req, res) => {
-	apiGetRequest(GET_PRODUCTS_OFFERS, req.session.customer)
+	apiGetRequest(GET_PRODUCTS_OFFERS)
 		.then(data => {
 			if (data.statusCode !== 200) {
 				res.sendStatus(500);

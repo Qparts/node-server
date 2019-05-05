@@ -91,7 +91,7 @@ const login = (req, res) => {
   apiPostRequest(LOGIN_URL, req.body)
     .then(data => {
       if (data.statusCode === 200) {
-        saveCurrentCustomer(req, data.body)
+        saveCurrentCustomer(req, data.body);
         res.send(data.body);
       } else {
         res.status(data.statusCode).send(errorMessages.form.signin.incorrectPassword);
@@ -266,7 +266,7 @@ const matchCode = (req, res, next) => {
   }
 }
 
-const saveCurrentCustomer = (req, data) => {
+const saveCurrentCustomer = (req, data) => {  
   const json = JSON.parse(data);
   req.session.customer = {
     token: json.token,
@@ -282,8 +282,12 @@ const logout = (req, res) => {
       if (data.statusCode !== 200) {
         res.sendStatus(500);
       } else {
-        req.session.destroy();
-        res.sendStatus(204);
+        req.session.destroy((error) => {
+          if(error) console.log(error);
+          else {
+            res.sendStatus(204);
+          }
+        });
       }
     });
 }

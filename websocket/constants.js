@@ -1,0 +1,5 @@
+const GET_NOTIFICATION = 'GET_NOTIFICATION';
+
+module.exports = {
+    GET_NOTIFICATION
+}

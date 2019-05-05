@@ -33,7 +33,7 @@ const getCountriesRegions = (req, res) => {
 
 const findCity = (req, res) => {
   const { city, countryId } = req.params;
-  apiGetRequest(`${FIND_CITY_URL}/name/${city}/country/${countryId}`, req.session.customer)
+  apiGetRequest(`${FIND_CITY_URL}/name/${city}/country/${countryId}`)
     .then(data => {
       res.send(data.body);
     });
@@ -41,7 +41,8 @@ const findCity = (req, res) => {
 
 const getRegions = (req, res) => {
   const { countryId } = req.params;
-  apiGetRequest(`${REGIONS_URL}/${countryId}`, req.session.customer)
+  
+  apiGetRequest(`${REGIONS_URL}/${countryId}`)
     .then(data => {
       if(data.statusCode !== 200) res.sendStatus(500);
       else {

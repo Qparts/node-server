@@ -9,31 +9,51 @@ const errorhandler = require('errorhandler');
 const isProduction = process.env.NODE_ENV === 'production';
 require('dotenv').config();
 const session = require('express-session');
-const routes = require('./routes/index');
+// const MemoryStore = require('memorystore')(session)
+// const cookieParser = require('cookie-parser');
 const crypto = require('crypto');
 const nocache = require('nocache');
 const buildPath = 'public/build';
+const WebSocket = require('ws');
+const secret = crypto.randomBytes(12).toString('hex');
+const Client = require('./websocket/client');
+const { GET_NOTIFICATION } = require('./websocket/constants');
 
 // Create global app object
 const app = express();
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
+const routes = require('./routes/index');
+// const sessionStore = new MemoryStore({
+//     checkPeriod: 86400000 // prune expired entries every 24h
+// });
+const sessionMiddleware = session({
+    // store: sessionStore,
+    secret,
+    cookie: { secure: false},
+    resave: false,
+    saveUninitialized: true
+});
+
+// Normal express config defaults
+app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({ limit: '500kb' }));
+// app.use(cookieParser());
 
 app.use(cors({
     origin: 'http://localhost:3000',
     credentials: true
 }));
+app.use(sessionMiddleware)
 
-app.use(session({
-    secret: crypto.randomBytes(12).toString('hex'),
-    cookie: { secure: false },
-    resave: false,
-    saveUninitialized: true,
-})
-)
+io.use((socket, next) => {    
+    sessionMiddleware(socket.request, {}, next);
+});
 
-// Normal express config defaults
-app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json({limit: '500kb'}));
+// app.set('trust proxy', 1) // trust first proxys
+
+let client = new Client(io);
 
 if (!isProduction) {
     app.use(errorhandler());
@@ -84,6 +104,6 @@ app.use(function (err, req, res, next) {
 });
 
 // finally, let's start our server...
-var server = app.listen(process.env.PORT || 8000, function () {
+server.listen(process.env.PORT || 8000, function () {
     console.log('Listening on port ' + server.address().port);
 });
