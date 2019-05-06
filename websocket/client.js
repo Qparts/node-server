@@ -13,24 +13,18 @@ function Client(io) {
 
         io.on('connection', socket => {
             const { token, id } = socket.request.session.customer;
+            const wsClient = new WebSocket(`ws://qtest.fareed9.com:8081/service-q-quotation/ws/notifications/customer/${id}/token/${token}`);
+
+            console.log('a new client is connected');
             
-            console.log('connected a new client');
-            // const wsClient = new WebSocket(`ws://qtest.fareed9.com:8081/service-q-quotation/ws/notifications/customer/${id}/token/${token}`);
 
-            socket.emit(GET_NOTIFICATION, 'you have one notification');
+            wsClient.on('message', (message) => {
+                console.log(message);
 
-            socket.on('disconnect', () => {
-                console.log('user disconnected');
             });
-
-            // wsClient.on('message', (message) => {
-            //     console.log(message);
-
-            // });
 
         });
 
-        // console.log(io.listeners('connection'));
     }
 
 

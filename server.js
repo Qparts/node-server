@@ -9,27 +9,19 @@ const errorhandler = require('errorhandler');
 const isProduction = process.env.NODE_ENV === 'production';
 require('dotenv').config();
 const session = require('express-session');
-// const MemoryStore = require('memorystore')(session)
-// const cookieParser = require('cookie-parser');
 const crypto = require('crypto');
 const nocache = require('nocache');
 const buildPath = 'public/build';
-const WebSocket = require('ws');
-const secret = crypto.randomBytes(12).toString('hex');
-const Client = require('./websocket/client');
-const { GET_NOTIFICATION } = require('./websocket/constants');
+// const WebSocket = require('ws');
+// const Client = require('./websocket/client');
 
 // Create global app object
 const app = express();
 const server = require('http').createServer(app);
-const io = require('socket.io')(server);
+// const io = require('socket.io')(server);
 const routes = require('./routes/index');
-// const sessionStore = new MemoryStore({
-//     checkPeriod: 86400000 // prune expired entries every 24h
-// });
 const sessionMiddleware = session({
-    // store: sessionStore,
-    secret,
+    secret: crypto.randomBytes(12).toString('hex'),
     cookie: { secure: false},
     resave: false,
     saveUninitialized: true
@@ -39,7 +31,6 @@ const sessionMiddleware = session({
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({ limit: '500kb' }));
-// app.use(cookieParser());
 
 app.use(cors({
     origin: 'http://localhost:3000',
@@ -47,13 +38,11 @@ app.use(cors({
 }));
 app.use(sessionMiddleware)
 
-io.use((socket, next) => {    
-    sessionMiddleware(socket.request, {}, next);
-});
+// io.use((socket, next) => {    
+//     sessionMiddleware(socket.request, {}, next);
+// });
 
-// app.set('trust proxy', 1) // trust first proxys
-
-let client = new Client(io);
+// let client = new Client(io);
 
 if (!isProduction) {
     app.use(errorhandler());
