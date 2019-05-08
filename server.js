@@ -19,11 +19,14 @@ const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 const routes = require('./routes/index');
+const eightHours = 28800000;
 const sessionMiddleware = session({
     secret: crypto.randomBytes(12).toString('hex'),
-    cookie: { secure: false},
+    cookie: {
+        maxAge: eightHours
+    },
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
 });
 
 // Normal express config defaults
@@ -35,9 +38,9 @@ app.use(cors({
     origin: 'http://localhost:3000',
     credentials: true
 }));
-app.use(sessionMiddleware)
+app.use(sessionMiddleware);
 
-io.use((socket, next) => {    
+io.use((socket, next) => {
     sessionMiddleware(socket.request, {}, next);
 });
 

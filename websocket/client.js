@@ -1,7 +1,7 @@
 
 
 const WebSocket = require('ws');
-const { GET_NOTIFICATION } = require('./constants');
+const { GET_COMPLETED_REQUESTS } = require('./constants');
 const {
     GET_QUOTATIONS_URL, POST_QUOTATIONS_URL, PUT_QUOTATION_READ_URL
 } = require('../routes/constants.js');
@@ -22,22 +22,21 @@ function Client(io) {
 
 
             wsClient.on('message', quotationComplete => {
-                console.log(quotationComplete);
-
-                apiGetRequest(`${GET_QUOTATIONS_URL}/${id}/completed`, req.session.customer)
+                apiGetRequest(`${GET_QUOTATIONS_URL}/${id}/completed`, socket.request.session.customer)
                     .then(data => {
                         if (data.statusCode === 200) {
-                            console.log(data.body);
+                            const json = JSON.parse(data.body);
+                            socket.emit(GET_COMPLETED_REQUESTS, json)
 
                         } else {
-                            console.log(data.statusCode);
+                            socket.emit(GET_COMPLETED_REQUESTS, data.statusCode)
                         }
                     });
             });
 
-            socket.on('close', () => {
-                wsClient.close();
-            })
+            socket.on('disconnect', () => {
+                console.log('close connection');
+            });
 
         });
 
@@ -45,14 +44,7 @@ function Client(io) {
 
 
     this.closeConnection = () => {
-        // console.log('close Connection');
-        // console.log(io);
-
-
-        // wsClient.on('close', () => {
-        //     console.log('closing the connection now');
-        //     WebSocket.close();
-        // })
+        io.close();
     }
 
 }

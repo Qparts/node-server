@@ -282,12 +282,8 @@ const logout = (req, res) => {
       if (data.statusCode !== 200) {
         res.sendStatus(500);
       } else {
-        req.session.destroy((error) => {
-          if(error) console.log(error);
-          else {
-            res.sendStatus(204);
-          }
-        });
+        req.session.destroy();
+        res.sendStatus(204);
       }
     });
 }
