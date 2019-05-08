@@ -13,7 +13,7 @@ const getPendingRequests = (req, res) => {
 			if (data.statusCode === 200) {
 				res.send(data.body);
 			} else {
-				res.send(data.statusCode);
+				res.sendStatus(data.statusCode);
 			}
 		});
 }
@@ -25,7 +25,7 @@ const getCompletedRequests = (req, res) => {
 			if (data.statusCode === 200) {
 				res.send(data.body);
 			} else {
-				res.send(data.statusCode);
+				res.sendStatus(data.statusCode);
 			}
 		});
 }

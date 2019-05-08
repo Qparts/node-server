@@ -1,7 +1,11 @@
 
 
 const WebSocket = require('ws');
-const { GET_NOTIFICATION } = require('./constants');
+const { GET_COMPLETED_REQUESTS } = require('./constants');
+const {
+     GET_QUOTATIONS_URL, POST_QUOTATIONS_URL, PUT_QUOTATION_READ_URL, CUSTOMER_NOTIFICATION_WS
+} = require('../routes/constants.js');
+const { apiGetRequest, apiPostRequest, apiPutRequest } = require('../routes/api/apiRequest.js');
 
 
 
@@ -13,14 +17,25 @@ function Client(io) {
 
         io.on('connection', socket => {
             const { token, id } = socket.request.session.customer;
-            const wsClient = new WebSocket(`ws://qtest.fareed9.com:8081/service-q-quotation/ws/notifications/customer/${id}/token/${token}`);
-
+            const wsClient = new WebSocket(`${CUSTOMER_NOTIFICATION_WS}/${id}/token/${token}`);
             console.log('a new client is connected');
-            
 
-            wsClient.on('message', (message) => {
-                console.log(message);
 
+            wsClient.on('message', quotationComplete => {
+                apiGetRequest(`${GET_QUOTATIONS_URL}/${id}/completed`, socket.request.session.customer)
+                    .then(data => {
+                        if (data.statusCode === 200) {
+                            const json = JSON.parse(data.body);
+                            socket.emit(GET_COMPLETED_REQUESTS, json)
+
+                        } else {
+                            socket.emit(GET_COMPLETED_REQUESTS, data.statusCode)
+                        }
+                    });
+            });
+
+            socket.on('disconnect', () => {
+                console.log('close connection');
             });
 
         });
@@ -29,14 +44,7 @@ function Client(io) {
 
 
     this.closeConnection = () => {
-        // console.log('close Connection');
-        // console.log(io);
-
-
-        // wsClient.on('close', () => {
-        //     console.log('closing the connection now');
-        //     WebSocket.close();
-        // })
+        io.close();
     }
 
 }
