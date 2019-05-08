@@ -1,6 +1,8 @@
 const { urls } = require('../utils');
 
 const BASE_URL = urls.getBaseURL();
+const WS_BASE_URL = urls.getWebSocketBase();
+const WS = 'ws';
 
 const CUSTOMER_SERVICE = 'service-q-customer';
 const LOCATION_SERVICE = 'service-q-location';
@@ -77,6 +79,8 @@ const GET_QUOTATIONS_URL = `${QUOTATION_SERVICE}/${API_V2}/${QUOTATION_CUSTOMER}
 const POST_QUOTATIONS_URL = `${QUOTATION_SERVICE}/${API_V2}/quotation`;
 const PUT_QUOTATION_READ_URL = `${QUOTATION_SERVICE}/${API_V2}/${QUOTATION_READ}`;
 
+const CUSTOMER_NOTIFICATION_WS = `${WS_BASE_URL}/${QUOTATION_SERVICE}/${WS}/notifications/customer`
+
 module.exports = {
     BASE_URL,
     LOGIN_URL,
@@ -136,5 +140,7 @@ module.exports = {
     QUOTATION_CUSTOMER,
     BANKS,
     QUOTATION_READ,
-    POPULAR_BRANDS_OIL
+    POPULAR_BRANDS_OIL,
+
+    CUSTOMER_NOTIFICATION_WS
 }
