@@ -16,6 +16,9 @@ function Client(io) {
 	function listen() {
 
 		io.on('connection', socket => {
+			if (!socket.request.session.customer) {
+				return socket.disconnect();
+			}
 			const { token, id } = socket.request.session.customer;
 			const wsClient = new WebSocket(`${CUSTOMER_NOTIFICATION_WS}/${id}/token/${token}`);
 			console.log('a new client is connected');
