@@ -11,7 +11,7 @@ const bestSellers = (req, res) => {
 				res.send(data.body);
 			}
 		});
-}
+};
 
 const offers = (req, res) => {
 	apiGetRequest(GET_PRODUCTS_OFFERS)
@@ -22,7 +22,7 @@ const offers = (req, res) => {
 				res.send(data.body);
 			}
 		});
-}
+};
 
 const getProduct = (req, res) => {
 	const { productId } = req.params;
@@ -34,8 +34,8 @@ const getProduct = (req, res) => {
 			} else {
 				res.send(data.body);
 			}
-		})
-}
+		});
+};
 
 const getGeneralSearch = (req, res) => {
 	apiGetRequest(`${GET_GENERAL_SEARCH}${req.url}`)
@@ -45,8 +45,8 @@ const getGeneralSearch = (req, res) => {
 			} else {
 				res.send(data.body);
 			}
-		})
-}
+		});
+};
 
 const getPopularBrandsOil = (req, res) => {
 	apiGetRequest(GET_POPULAR_BRANDS_OIL_URL)
@@ -56,8 +56,8 @@ const getPopularBrandsOil = (req, res) => {
 			} else {
 				res.sendStatus(data.statusCode);
 			}
-		})
-}
+		});
+};
 
 module.exports = {
 	bestSellers,
@@ -65,4 +65,4 @@ module.exports = {
 	getProduct,
 	getGeneralSearch,
 	getPopularBrandsOil
-}
+};

@@ -11,8 +11,8 @@ const {
 } = require('../../../constants');
 
 router.put('/', editName);
-router.post(`/${ADDRESS}`, addAddress)
-router.post(`/${VEHICLE}`, addVehicle)
+router.post(`/${ADDRESS}`, addAddress);
+router.post(`/${VEHICLE}`, addVehicle);
 router.post('/edit/phone', editPhone);
 router.post('/edit/email', editEmail);
 router.post(`/${RESET_PASSWORD}`, resetPassword);
@@ -30,6 +30,6 @@ router.post('/change-email', changeEmailSendLink);
 router.put('/change-email', changeEmailVerification);
 router.put(`/${PASSWORD}`, changePassword);
 router.get(`/${LOGOUT}`, logout);
-router.post('/notification/register', postSubscribeCustomer)
+router.post('/notification/register', postSubscribeCustomer);
 
 module.exports = router;

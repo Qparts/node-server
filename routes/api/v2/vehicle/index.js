@@ -3,6 +3,6 @@ const {
 	getMakes
 } = require('./middleware');
 
-router.get('/makes', getMakes)
+router.get('/makes', getMakes);
 
 module.exports = router;

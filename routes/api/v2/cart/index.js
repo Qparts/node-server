@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {
-    getQuotation, addCart, getRepliedQuotation, wireTransfer, creditCard, paymentResponse, getBanks
+	getQuotation, addCart, getRepliedQuotation, wireTransfer, creditCard, paymentResponse, getBanks
 } = require('./middleware');
 
 const { WIRE_TRANSFER, CREDIT_CARD, PAYMENT_3DSECURE_RESPONSE, BANKS } = require('../../../constants');

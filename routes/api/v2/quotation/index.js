@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { 
-    getPendingRequests, getCompletedRequests, postQuotation, putQuotationRequestRead
+	getPendingRequests, getCompletedRequests, postQuotation, putQuotationRequestRead
 } = require('./middleware');
 
 const { QUOTATION_CUSTOMER, QUOTATION_READ } = require('../../../constants');
