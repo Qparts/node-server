@@ -2,14 +2,19 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "lint": "eslint ."
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://AhmedShab@bitbucket.org/qetaa/node-server.git"
+  },
   "author": "",
   "license": "ISC",
+  "homepage": "https://bitbucket.org/qetaa/node-server#readme",
   "dependencies": {
     "async": "^2.6.2",
     "aws-sdk": "^2.401.0",
@@ -27,6 +32,7 @@
     "node-uuid": "^1.4.8",
     "request": "^2.87.0",
     "socket.io": "^2.2.0",
+    "web-push": "^3.3.4",
     "ws": "^6.2.1"
   },
   "devDependencies": {

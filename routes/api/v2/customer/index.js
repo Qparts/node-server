@@ -1,13 +1,13 @@
 const router = require('express').Router();
 const {
-    editName, editPhone, editEmail, resetPassword, updatePassword, login, postCodeLogin, signup, accountVerification, registerEmail, 
-    resetPasswordSms, matchCode, socialMediaAuth, addSocialMediaLink, addAddress, addVehicle, changeEmailSendLink, changeEmailVerification,
-    changePassword, logout, resetPasswordToken
+	editName, editPhone, editEmail, resetPassword, updatePassword, login, postCodeLogin, signup, accountVerification, registerEmail,
+	resetPasswordSms, matchCode, socialMediaAuth, addSocialMediaLink, addAddress, addVehicle, changeEmailSendLink, changeEmailVerification,
+	changePassword, logout, resetPasswordToken, postSubscribeCustomer
 } = require('./methods');
 
 const {
-    LOGIN, CODE_LOGIN, SIGNUP, ACCOUNT_VERIFY, SOCIAL_MEDIA_AUTH, RESET_PASSWORD, VEHICLE, 
-    PASSWORD, LOGOUT, SOCIAL_MEDIA, ADDRESS
+	LOGIN, CODE_LOGIN, SIGNUP, ACCOUNT_VERIFY, SOCIAL_MEDIA_AUTH, RESET_PASSWORD, VEHICLE,
+	PASSWORD, LOGOUT, SOCIAL_MEDIA, ADDRESS
 } = require('../../../constants');
 
 router.put('/', editName);
@@ -30,5 +30,6 @@ router.post('/change-email', changeEmailSendLink);
 router.put('/change-email', changeEmailVerification);
 router.put(`/${PASSWORD}`, changePassword);
 router.get(`/${LOGOUT}`, logout);
+router.post('/notification/register', postSubscribeCustomer)
 
 module.exports = router;

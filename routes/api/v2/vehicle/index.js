@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {
- getMakes
+	getMakes
 } = require('./middleware');
 
 router.get('/makes', getMakes)
