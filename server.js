@@ -12,7 +12,6 @@ exports.webpush = require('web-push');
 require('./config/webpush.js').setWebpush();
 
 // middlewars
-const webpushMiddleware = require('./middlewares/webpushMiddleware');
 const sessionMiddleware = require('./middlewares/sessionMiddleware');
 
 // Create global app object
@@ -30,7 +29,6 @@ app.use(cors({
 	credentials: true
 }));
 app.use(sessionMiddleware);
-app.use(webpushMiddleware);
 
 io.use((socket, next) => {
 	sessionMiddleware(socket.request, {}, next);

@@ -258,17 +258,9 @@ const changePassword = (req, res) => {
 }
 
 const postSubscribeCustomer = (req, res) => {
-	const { webpush } = req.session;
-	const testData = {
-		title: "Testing",
-		body: "It's a success!",
-		icon: "/path/to/an/icon.png"
-	};
 	const subscription = req.body;
 	req.session.customer = { ...req.session.customer, subscription };
-
 	res.sendStatus(201);
-	webpush.sendNotification(subscription, JSON.stringify(testData));
 
 }
 
