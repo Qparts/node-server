@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const {
 	getMakes
-} = require('./middleware');
+} = require.main.require('./controllers/vehicleController');
 
 router.get('/makes', getMakes);
 

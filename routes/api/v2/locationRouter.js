@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const { apiGetRequest } = require('../../apiRequest');
+const { apiGetRequest } = require('../apiRequest');
 const {
 	getCountry, getCountries, getCountriesRegions, findCity, getRegions, getCountriesOnly
-} = require('./methods');
-const { COUNTRIES_ONLY} = require('../../../constants');
+} = require.main.require('./controllers/locationController');
+const { COUNTRIES_ONLY} = require('../../constants');
 
 router.get('/', getCountries);
 router.get(`/${COUNTRIES_ONLY}`, getCountriesOnly);

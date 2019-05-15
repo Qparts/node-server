@@ -1,5 +1,5 @@
-const { GET_PRODUCTS_BEST_SELLERS, GET_PRODUCTS_OFFERS, GET_PRODUCT, GET_GENERAL_SEARCH, GET_POPULAR_BRANDS_OIL_URL } = require('../../../constants');
-const { apiGetRequest, apiPostRequest, apiPutRequest } = require('../../apiRequest');
+const { GET_PRODUCTS_BEST_SELLERS, GET_PRODUCTS_OFFERS, GET_PRODUCT, GET_GENERAL_SEARCH, GET_POPULAR_BRANDS_OIL_URL } = require('../routes/constants');
+const { apiGetRequest, apiPostRequest, apiPutRequest } = require('../routes/api/apiRequest');
 
 const bestSellers = (req, res) => {
 

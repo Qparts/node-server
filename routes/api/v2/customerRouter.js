@@ -3,12 +3,12 @@ const {
 	editName, editPhone, editEmail, resetPassword, updatePassword, login, postCodeLogin, signup, accountVerification, registerEmail,
 	resetPasswordSms, matchCode, socialMediaAuth, addSocialMediaLink, addAddress, addVehicle, changeEmailSendLink, changeEmailVerification,
 	changePassword, logout, resetPasswordToken, postSubscribeCustomer
-} = require('./methods');
+} = require.main.require('./controllers/customerController');
 
 const {
 	LOGIN, CODE_LOGIN, SIGNUP, ACCOUNT_VERIFY, SOCIAL_MEDIA_AUTH, RESET_PASSWORD, VEHICLE,
 	PASSWORD, LOGOUT, SOCIAL_MEDIA, ADDRESS
-} = require('../../../constants');
+} = require('../../constants');
 
 router.put('/', editName);
 router.post(`/${ADDRESS}`, addAddress);

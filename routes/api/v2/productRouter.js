@@ -1,9 +1,9 @@
 const router = require('express').Router();
 const {
 	bestSellers, offers, getProduct, getGeneralSearch, getPopularBrandsOil
-} = require('./middleware');
+} = require.main.require('./controllers/productController');
 
-const { PRODUCT, BEST_SELLERS, OFFERS, SEARCH_GENERAL, POPULAR_BRANDS_OIL } = require('../../../constants');
+const { PRODUCT, BEST_SELLERS, OFFERS, SEARCH_GENERAL, POPULAR_BRANDS_OIL } = require('../../constants');
 
 router.get(`/${BEST_SELLERS}`, bestSellers);
 router.get(`/${OFFERS}`, offers);
