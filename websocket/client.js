@@ -47,7 +47,7 @@ function Client(io) {
 					const data = {
 						...json,
 						body: json.url,
-						title: 'Quotation Complete',
+						title: json.title,
 					};
 
 					webpush.sendNotification(subscription, JSON.stringify(data))
