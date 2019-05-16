@@ -18,6 +18,19 @@ const getPendingRequests = (req, res) => {
 		});
 }
 
+const getClosedRequests = (req, res) => {
+
+	const { customerId } = req.params;
+	apiGetRequest(`${GET_QUOTATIONS_URL}/${customerId}/closed`, req.session.customer)
+		.then(data => {
+			if (data.statusCode === 200) {
+				res.send(data.body);
+			} else {
+				res.sendStatus(data.statusCode);
+			}
+		});
+}
+
 const getCompletedRequests = (req, res) => {
 	const { customerId } = req.params;
 	apiGetRequest(`${GET_QUOTATIONS_URL}/${customerId}/completed`, req.session.customer)
@@ -93,5 +106,6 @@ module.exports = {
 	getPendingRequests,
 	getCompletedRequests,
 	postQuotation,
-	putQuotationRequestRead
+	putQuotationRequestRead,
+	getClosedRequests
 }

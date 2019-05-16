@@ -8,6 +8,7 @@ const {
 } = require('../routes/constants')
 
 const { invalidToken } = require('../routes/api/constants');
+const _ = require('lodash');
 
 const editName = (req, res) => {
 	const { firstName, lastName, defaultLang } = req.body;
@@ -258,7 +259,7 @@ const changePassword = (req, res) => {
 }
 
 const postSubscribeCustomer = (req, res) => {
-	const subscription = req.body;
+	const subscription = _.isEmpty(req.body) ? null : req.body;
 	req.session.customer = { ...req.session.customer, subscription };
 	res.sendStatus(201);
 
