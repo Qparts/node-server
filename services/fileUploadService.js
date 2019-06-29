@@ -10,6 +10,7 @@ const upload = (image, itemName, bucketName) => {
 		Body: buf,
 		ContentEncoding: 'base64',
 		ContentType: 'image/png',
+		ACL : 'bucket-owner-full-control'
 	};
 	s3.putObject(params, function(err, data){
 		if (err) { 
