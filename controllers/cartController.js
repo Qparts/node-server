@@ -97,8 +97,6 @@ const creditCard = (req, res) => {
 		preferredCuorier
 	};
 
-	console.log(body);
-
 	apiPostRequest(POST_CREDIT_CARD_CART_URL, body, req.session.customer).then(
 		data => {
 			if (data.statusCode === 202 || data.statusCode === 201) {
