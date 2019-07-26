@@ -90,7 +90,7 @@ const postQuotation = (req, res) => {
 	};
 
 	apiPostRequest(URL, body, req.session.customer).then(data => {
-		if (data.statusCode === 202) {
+		if (data.statusCode === 202 || data.statusCode === 200) {
 			const parseData = JSON.parse(data.body);
 
 			parseData.items.forEach(async item => {
